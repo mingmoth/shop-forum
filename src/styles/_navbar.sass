@@ -1,6 +1,53 @@
 nav
-  background: $mainPink
+  background: $step-grey
   width: 100%
   .nav-container
-    max-width: 1440px
+    max-width: 1280px
     margin: 0 auto
+    height: 60px
+    display: flex
+    align-items: center
+    padding: 2%
+    .nav-logo
+      width: 170px
+      height: 30px
+      margin-right: 2%
+    img 
+      width: 24px
+      height: 24px
+    .search-container
+      width: 100%
+      min-width: 300px
+      display: inline
+      position: relative
+      #search
+        border: none
+        border-radius: 5px
+        height: 35px
+        width: 100%
+        outline: none
+        padding-left: 2%
+      button
+        position: absolute
+        right: 1%
+        border-radius: 5px
+        width: 56px
+        height: 28px
+        border: none
+        background: $step-grey
+        top: calc( 50% - 13.5px )
+        
+        .search-icon
+          width: 20px
+          height: 20px
+          line-height: 30px
+          margin-bottom: 4px
+    .nav-options
+      width: 20%
+      min-width: 200px
+      margin-left: 2%
+      display: flex
+      justify-content: space-between
+
+
+
