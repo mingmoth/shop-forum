@@ -1,0 +1,62 @@
+.product
+  flex-basis: 20%
+  max-width: 20%
+  margin: 2% 0
+  padding: 0 1%
+  display: flex
+  flex-direction: column
+  .product-container
+
+  .product-head
+    width: 100%
+    padding-top: 100%
+    position: relative
+    img
+      position: absolute
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
+      object-fit: cover
+      
+  .product-body
+    padding: 2%
+    .product-description
+      color: $input-grey
+      font-size: 14px
+      font-weight: 300
+    .product-price
+      font-size: 16px
+      color: $mainPink
+    form
+      display: flex
+      justify-content: end
+      margin-top: 2%
+      input
+        width: 30%
+        padding: 2%
+        margin-right: 2%
+        border: 1px solid $footer-grey
+        &:hover, &:active
+          outline: 1px solid $input-grey
+        
+      .product-add
+        border: 1px solid $mainPink
+        background: $light
+        padding-left: 5%
+        padding-right: 5%
+        color: $mainPink
+        font-weight: 300
+        border-radius: 4px
+        &:hover
+          background: $mainPink
+          color: $light
+        +breakpoint(mobile)
+          font-size: 12px
+  +breakpoint(pad-portrait)
+    flex-basis: 50%
+    max-width: 50%
+  +breakpoint(mobile)
+    min-width: 100%
+  
+  

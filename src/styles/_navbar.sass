@@ -1,6 +1,8 @@
 nav
-  background: $step-grey
+  background: $mainPink
   width: 100%
+  +breakpoint(mobile)
+    background: $input-grey
   .nav-container
     max-width: 1280px
     margin: 0 auto
@@ -8,10 +10,13 @@ nav
     display: flex
     align-items: center
     padding: 2%
+    
     .nav-logo
-      width: 170px
-      height: 30px
+      width: 130px
+      height: 18.39px
       margin-right: 2%
+      +breakpoint(mobile)
+        display: none
     img 
       width: 24px
       height: 24px
@@ -34,7 +39,7 @@ nav
         width: 56px
         height: 28px
         border: none
-        background: $step-grey
+        background: $mainPink
         top: calc( 50% - 13.5px )
         
         .search-icon
@@ -48,6 +53,19 @@ nav
       margin-left: 2%
       display: flex
       justify-content: space-between
+      +breakpoint(mobile)
+        background: $mainPink
+        position: absolute
+        z-index: 1
+        width: 100%
+        bottom: 0
+        left: -2%
+        height: 50px
+        display: flex
+        justify-content: space-around
+        align-items: center
+      img
+        cursor: pointer
 
 
 
