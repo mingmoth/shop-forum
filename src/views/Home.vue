@@ -36,6 +36,8 @@ export default {
     margin: 0 auto
     padding: 2%
     +breakpoint(mobile)
-      height: calc( 100vh - 110px )
+      height: calc( 100vh - 120px )
       overflow-y: auto
+      &::-webkit-scrollbar
+        display: none
 </style>

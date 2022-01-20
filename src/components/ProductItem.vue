@@ -2,15 +2,17 @@
   <div class="product">
     <div class="product-container">
       <div class="product-head">
-        <img src="../assets/product_demo.jpg" alt="" class="product-image" />
+        <router-link to="/products" >
+          <img src="../assets/product_demo.jpg" alt="" class="product-image" />
+        </router-link> 
       </div>
       <div class="product-body">
-        <div class="product-name">力宏wang</div>
+        <router-link to="/products" class="product-name">力宏wang</router-link>
         <div class="product-description">多的是你不知道的事</div>
         <div class="product-price"><span>$</span> 律師費</div>
         <form action="">
-          <input type="number" class="product-quantity" />
-          <button class="product-add">Add to cart</button>
+          <input type="number" class="product-quantity" min="1" />
+          <button class="product-add">加入購物車</button>
         </form>
       </div>
     </div>

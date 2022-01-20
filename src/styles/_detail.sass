@@ -1,0 +1,67 @@
+.detail-container
+  max-width: 1280px
+  margin: 0 auto
+  padding: 2%
+  display: flex
+  +breakpoint(mobile)
+    display: block
+    padding: 4%
+  .detail-head
+    display: flex
+    flex-direction: column
+    margin-right: 2%
+    +breakpoint(mobile)
+      margin-bottom: 5%
+    .detail-image
+      width: 30vw
+      padding-top: 30vw
+      min-width: 200px
+      min-height: 200px
+      position: relative
+      +breakpoint(mobile)
+        width: calc( 100vw - 8% )
+      .detail-photo
+        width: 100%
+        height: 100%
+        position: absolute
+        top: 0
+        left: 0
+        object-fit: cover
+        +breakpoint(mobile)
+          object-fit: contain
+  .detail-body
+    .detail-name
+      font-size: 1.5em
+      margin-bottom: 2%
+    .detail-price
+      font-size: 1em
+      color: $mainPink
+      margin-bottom: 4%
+    .detail-description
+      white-space: pre-line
+      margin-bottom: 4%
+    form
+      .detail-quantity
+        margin-bottom: 4%
+        color: $input-grey
+        display: block
+        label
+          margin-right: 4%
+        input
+          height: 28px
+          width: 100px
+          border: 1px solid $footer-grey
+          border-radius: 4px
+          padding-left: 3%
+          font-size: 14px
+          font-weight: 300
+          color: $input-grey
+          &:hover, &:active
+            outline: 1px solid $input-grey
+      .detail-add
+        background: $mainPink
+        border: none
+        border-radius: 4px
+        height: 36px
+        width: 150px
+        color: $light
