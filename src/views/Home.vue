@@ -6,6 +6,7 @@
     <div class="main">
       <div class="row">
         <ProductItem v-for="product in products" :key="product" />
+        <Pagination />
       </div>
     </div>
     <div class="foot"></div>
@@ -15,9 +16,10 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import ProductItem from "../components/ProductItem.vue";
+import Pagination from '../components/Pagination.vue'
 export default {
   name: "Home",
-  components: { Navbar, ProductItem },
+  components: { Navbar, ProductItem, Pagination },
   data() {
     return {
       products: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
