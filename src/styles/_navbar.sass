@@ -8,14 +8,19 @@ nav
     display: flex
     align-items: center
     padding: 2%
-    
+
     .nav-logo
       width: 130px
       height: 18.39px
       margin-right: 2%
+      cursor: pointer
+      img
+        width: 130px
+        height: 18.39px
+        object-fit: cover
       +breakpoint(mobile)
         display: none
-    img 
+    img
       width: 24px
       height: 24px
     .search-container
@@ -39,7 +44,7 @@ nav
         border: none
         background: $mainPink
         top: calc( 50% - 13.5px )
-        
+
         .search-icon
           width: 20px
           height: 20px
@@ -64,6 +69,3 @@ nav
         align-items: center
       img
         cursor: pointer
-
-
-

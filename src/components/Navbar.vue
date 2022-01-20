@@ -2,18 +2,26 @@
   <div>
     <nav>
       <div class="nav-container">
-        <img src="../assets/logo_text.png" alt="" class="nav-logo">
+        <route-link to="/home" class="nav-logo" >
+          <img src="../assets/logo_text.png" alt="" />
+        </route-link>
         <div class="search-container">
-            <input type="text" name="search" id="search">
-            <button>
-              <img src="../assets/icon_light_search.png" alt="" class="search-icon">
-            </button>
-          </div>
+          <input type="text" name="search" id="search" />
+          <button>
+            <img
+              src="../assets/icon_light_search.png"
+              alt=""
+              class="search-icon"
+            />
+          </button>
+        </div>
         <div class="nav-options">
-          <img src="../assets/setting logo.png" alt="" class="admin-icon">
-          <img src="../assets/icom_light_cart.png" alt="" class="cart-icon">
-          <img src="../assets/user logo.png" alt="">
-          <img src="../assets/moon_icon.png" alt="" class="theme-toggle-icon">
+          <img src="../assets/setting logo.png" alt="" class="admin-icon" />
+          <router-link to="/carts">
+            <img src="../assets/icom_light_cart.png" alt="" class="cart-icon"
+          /></router-link>
+          <img src="../assets/user logo.png" alt="" />
+          <img src="../assets/moon_icon.png" alt="" class="theme-toggle-icon" />
         </div>
       </div>
     </nav>
@@ -22,8 +30,8 @@
 
 <script>
 export default {
-  name: 'Navbar',
-}
+  name: "Navbar",
+};
 </script>
 
 <style lang="sass">
