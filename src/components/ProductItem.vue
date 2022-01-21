@@ -12,7 +12,7 @@
         <div class="product-price"><span>$</span> 律師費</div>
         <form action="">
           <input type="number" class="product-quantity" min="1" />
-          <button class="product-add">加入購物車</button>
+          <button class="product-add" @click="$router.push('/signin')">加入購物車</button>
         </form>
       </div>
     </div>

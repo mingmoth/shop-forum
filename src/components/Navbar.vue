@@ -2,9 +2,9 @@
   <div>
     <nav>
       <div class="nav-container">
-        <route-link to="/home" class="nav-logo" >
+        <router-link to="/home" class="nav-logo" >
           <img src="../assets/logo_text.png" alt="" />
-        </route-link>
+        </router-link>
         <div class="search-container">
           <input type="text" name="search" id="search" />
           <button>
@@ -18,9 +18,10 @@
         <div class="nav-options">
           <img src="../assets/setting logo.png" alt="" class="admin-icon" />
           <router-link to="/carts">
-            <img src="../assets/icom_light_cart.png" alt="" class="cart-icon"
+            <img src="../assets/cart_icon.png" alt="" class="cart-icon"
           /></router-link>
-          <img src="../assets/user logo.png" alt="" />
+          <router-link to="/orders"><img src="../assets/user logo.png" alt="" /></router-link>
+          
           <img src="../assets/moon_icon.png" alt="" class="theme-toggle-icon" />
         </div>
       </div>

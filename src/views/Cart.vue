@@ -12,6 +12,8 @@
           <CartItem />
           <CartItem />
         </div>
+        <div class="cart-total">總金額 :<span class="cart-amount"><span>$ </span>律師費</span></div>
+        
       </div>
     </div>
     <div class="foot"></div>
@@ -30,18 +32,26 @@ export default {
 <style lang="sass" scoped>
 .cart-container
   max-width: 1280px
-  margin: 2% auto
+  margin: 1em auto
   padding: 2%
   border: 1px solid $border-grey
   border-radius: 8px
   font-size: 1.3em
   font-weight: 500
+  color: $text-content
   p
     border-bottom: 1px solid $border-grey
-    padding-bottom: 1em
+    padding-bottom: 0.5em
   .cart-wrapper
-    max-height: 600px
+    max-height: 500px
     overflow-y: auto
     &::-webkit-scrollbar
       display: none
+  .cart-total
+    padding-top: 0.5em
+    font-size: 0.9em
+    font-weight: 400
+  .cart-amount
+    float: right
+    color: $mainPink
 </style>
