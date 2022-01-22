@@ -1,12 +1,12 @@
 <template>
-  <div class="container py-5">
-    <form class="w-100" @submit.prevent.stop="handleSubmit">
+  <div class="container">
+    <form class="wrapper" @submit.prevent.stop="handleSubmit">
       <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+        <h1 class="h3 mb-3 font-weight-bold">登入 Alpha Shop</h1>
       </div>
 
       <div class="form-label-group mb-2">
-        <label for="email">email</label>
+        <label for="email">電子郵件</label>
         <input
           id="email"
           v-model="email"
@@ -21,7 +21,7 @@
       </div>
 
       <div class="form-label-group mb-3">
-        <label for="password">Password</label>
+        <label for="password">密碼</label>
         <input
           id="password"
           v-model="password"
@@ -33,18 +33,17 @@
           required
         />
       </div>
-
       <button
-        class="btn btn-lg btn-primary btn-block mb-3"
+        class="btn-signin my-2"
         type="submit"
         :disabled="isProcessing"
       >
-        Submit
+        登入
       </button>
 
       <div class="text-center mb-3">
         <p>
-          <router-link to="/signup">Sign Up</router-link>
+          <router-link to="/signup" class="signUp">註冊</router-link>
         </p>
       </div>
     </form>
@@ -107,3 +106,26 @@ export default {
   },
 };
 </script>
+
+<style lang="sass" scoped>
+.container 
+  margin-top: 200px
+.wrapper
+  width: 50%
+  margin: 0 auto
+  +breakpoint(mobile)
+    width: 100%
+.btn-signin
+  width: 100%
+  border: none
+  background: $mainPink
+  color: $light
+  height: 40px
+  font-size: 1em
+  font-weight: 500
+  border-radius: 40px
+.signUp
+  color: $mainPink
+  font-size: 1em
+  font-weight: 500
+</style>
