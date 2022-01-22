@@ -15,6 +15,7 @@
         </div>
       </div>
       <div class="cart-price"><span>$ </span>律師費</div>
+      <img src="../assets/trash-solid.png" alt="" class="cart-delete">
     </div>
   </div>
 </template>

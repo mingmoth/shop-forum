@@ -1,10 +1,11 @@
 .cart
   margin-top: 1em
   display: flex
-  padding-bottom: 20px
-  border-bottom: 1px solid $border-grey
-  max-height: 220px
+  border: 1px solid $border-grey
+  max-height: 200px
   min-height: 120px
+  border-radius: 6px
+  box-shadow: 1px 1px 2px 0px $border-grey
   .cart-head
     width: 30vw
     max-width: 200px
@@ -13,7 +14,6 @@
     min-height: 100px
     padding-top: 30vw
     position: relative
-    margin-right: 7%
     .cart-image
       width: 100%
       height: 100%
@@ -24,20 +24,25 @@
       object-fit: cover
       top: 0
       left: 0
-      border-radius: 4px
+      border-radius: 6px 0 0 6px
 
   .cart-body
     flex: 1
+    padding: 20px
     display: flex
     justify-content: space-between
     min-width: 300px
+    position: relative
     +breakpoint(mobile)
       display: block
+      padding: 12px
     .cart-sum
       .cart-name
         font-size: 1em
         font-weight: 400
-        margin-bottom: 2%
+        margin-bottom: 20px
+        +breakpoint(mobile)
+          margin-bottom: 10px
       .cart-count
         display: flex
         align-items: center
@@ -54,3 +59,13 @@
       color: $mainPink
       font-size: 16px
       font-weight: 400
+    .cart-delete
+      width: 16px
+      height: 22px
+      position: absolute
+      bottom: 20px
+      right: 20px
+      +breakpoint(mobile)
+        left: 40%
+        bottom: 12px
+

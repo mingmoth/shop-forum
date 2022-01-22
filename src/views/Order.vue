@@ -93,7 +93,7 @@ export default {
         padding: 0.5em
         padding-right: 1em
         font-size: 0.9em
-        font-weight: 400
+        font-weight: 500
       .order-amount
         float: right
         color: $mainPink
@@ -102,7 +102,7 @@ export default {
       padding: 0.5em
       min-width: 50%
       font-size: 0.9em
-      font-weight: 400
+      font-weight: 500
       +breakpoint(mobile)
         border: none
       ul
