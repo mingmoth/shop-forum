@@ -1,10 +1,22 @@
-const state = {}
+const state = {
+  products: [],
+}
 
-const getters = {}
+const getters = {
+  getProducts: state => state.products,
+}
 
-const actions = {}
+const actions = {
+  fetchProducts({ commit }, products) {
+    commit('getProducts', products)
+  },
+}
 
-const mutations = {}
+const mutations = {
+  getProducts(state, products) {
+    state.products = products
+  },
+}
 
 export default {
   state,

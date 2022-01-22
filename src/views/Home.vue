@@ -14,17 +14,27 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { productLoader } from '../utils/app'
+
 import Navbar from "../components/Navbar.vue";
 import ProductItem from "../components/ProductItem.vue";
 import Pagination from '../components/Pagination.vue'
 export default {
   name: "Home",
+  mixins: [ productLoader ],
   components: { Navbar, ProductItem, Pagination },
   data() {
     return {
       products: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     };
   },
+  created() {
+    this.setProducts()
+  },
+  computed: {
+    ...mapGetters(['getProducts'])
+  }
   //
 };
 </script>
