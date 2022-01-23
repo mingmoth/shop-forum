@@ -1,78 +1,83 @@
 <template>
-  <div class="container">
-    <form class="wrapper" @submit.prevent.stop="handleSubmit">
-      <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal">註冊使用 Alpha Shop</h1>
-      </div>
+  <div class="app-container">
+    <div class="head">
+      <Navbar />
+    </div>
+    <div class="container">
+      <form class="wrapper" @submit.prevent.stop="handleSubmit">
+        <div class="text-center mb-4">
+          <h1 class="h3 mb-3 font-weight-normal">註冊使用 Alpha Shop</h1>
+        </div>
 
-      <div class="form-label-group mb-2">
-        <label for="email">名稱</label>
-        <input
-          id="name"
-          v-model="name"
-          name="name"
-          type="text"
-          class="form-control"
-          placeholder="name"
-          autocomplete="username"
-          required
-          autofocus
-        />
-      </div>
+        <div class="form-label-group mb-2">
+          <label for="email">名稱</label>
+          <input
+            id="name"
+            v-model="name"
+            name="name"
+            type="text"
+            class="form-control"
+            placeholder="name"
+            autocomplete="username"
+            required
+            autofocus
+          />
+        </div>
 
-      <div class="form-label-group mb-2">
-        <label for="email">電子郵件</label>
-        <input
-          id="email"
-          v-model="email"
-          name="email"
-          type="email"
-          class="form-control"
-          placeholder="email"
-          autocomplete="email"
-          required
-          autofocus
-        />
-      </div>
+        <div class="form-label-group mb-2">
+          <label for="email">電子郵件</label>
+          <input
+            id="email"
+            v-model="email"
+            name="email"
+            type="email"
+            class="form-control"
+            placeholder="email"
+            autocomplete="email"
+            required
+            autofocus
+          />
+        </div>
 
-      <div class="form-label-group mb-3">
-        <label for="password">密碼</label>
-        <input
-          id="password"
-          v-model="password"
-          name="password"
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        />
-      </div>
+        <div class="form-label-group mb-3">
+          <label for="password">密碼</label>
+          <input
+            id="password"
+            v-model="password"
+            name="password"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
 
-      <div class="form-label-group mb-3">
-        <label for="password">密碼確認</label>
-        <input
-          id="passwordCheck"
-          v-model="passwordCheck"
-          name="passwordCheck"
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        />
-      </div>
+        <div class="form-label-group mb-3">
+          <label for="password">密碼確認</label>
+          <input
+            id="passwordCheck"
+            v-model="passwordCheck"
+            name="passwordCheck"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
 
-      <button class="btn-signup my-2" type="submit" :disabled="isProcessing">
-        註冊
-      </button>
+        <button class="btn-signup my-2" type="submit" :disabled="isProcessing">
+          註冊
+        </button>
 
-      <div class="text-center mb-3">
-        <p>
-          <router-link to="/signin" class="signIn">取消</router-link>
-        </p>
-      </div>
-    </form>
+        <div class="text-center mb-3">
+          <p>
+            <router-link to="/signin" class="signIn">取消</router-link>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -80,16 +85,19 @@
 <script>
 // import authorizationAPI from '../apis/authorization'
 // import {Toast} from '../utils/helpers'
+
+import Navbar from '../components/Navbar.vue'
 export default {
-  name: 'SignIn',
+  name: "SignIn",
+  components: { Navbar },
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
-      passwordCheck: '',
-      isProcessing: false
-    }
+      name: "",
+      email: "",
+      password: "",
+      passwordCheck: "",
+      isProcessing: false,
+    };
   },
   methods: {
     // async handleSubmit() {
@@ -118,10 +126,9 @@ export default {
     //     })
     //     if(data.status === "error") {
     //       throw new Error(data.message)
-          
     //     }
     //     Toast.fire({
-    //       icon: 'success', 
+    //       icon: 'success',
     //       title: data.message
     //     })
     //     this.$router.push('/signin')
@@ -134,8 +141,8 @@ export default {
     //     })
     //   }
     // }
-  }
-}
+  },
+};
 </script>
 
 <style lang="sass" scoped>

@@ -1,60 +1,64 @@
 <template>
-  <div class="container">
-    <form class="wrapper" @submit.prevent.stop="handleSubmit">
-      <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-bold">登入 Alpha Shop</h1>
-      </div>
+  <div class="app-container">
+    <div class="head">
+      <Navbar />
+    </div>
+    <div class="container">
+      <form class="wrapper" @submit.prevent.stop="handleSubmit">
+        <div class="text-center mb-4">
+          <h1 class="h3 mb-3 font-weight-bold">登入 Alpha Shop</h1>
+        </div>
 
-      <div class="form-label-group mb-2">
-        <label for="email">電子郵件</label>
-        <input
-          id="email"
-          v-model="email"
-          name="email"
-          type="email"
-          class="form-control"
-          placeholder="email"
-          autocomplete="username"
-          required
-          autofocus
-        />
-      </div>
+        <div class="form-label-group mb-2">
+          <label for="email">電子郵件</label>
+          <input
+            id="email"
+            v-model="email"
+            name="email"
+            type="email"
+            class="form-control"
+            placeholder="email"
+            autocomplete="username"
+            required
+            autofocus
+          />
+        </div>
 
-      <div class="form-label-group mb-3">
-        <label for="password">密碼</label>
-        <input
-          id="password"
-          v-model="password"
-          name="password"
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          autocomplete="current-password"
-          required
-        />
-      </div>
-      <button
-        class="btn-signin my-2"
-        type="submit"
-        :disabled="isProcessing"
-      >
-        登入
-      </button>
+        <div class="form-label-group mb-3">
+          <label for="password">密碼</label>
+          <input
+            id="password"
+            v-model="password"
+            name="password"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+        <button class="btn-signin my-2" type="submit" :disabled="isProcessing">
+          登入
+        </button>
 
-      <div class="text-center mb-3">
-        <p>
-          <router-link to="/signup" class="signUp">註冊</router-link>
-        </p>
-      </div>
-    </form>
+        <div class="text-center mb-3">
+          <p>
+            <router-link to="/signup" class="signUp">註冊</router-link>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
+
 // import authorizationAPI from "../apis/authorization";
 // import { Toast } from "./../utils/helpers";
 export default {
   name: "SignIn",
+  components: { Navbar },
   data() {
     return {
       email: "",
@@ -108,7 +112,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.container 
+.container
   margin-top: 200px
 .wrapper
   width: 50%
