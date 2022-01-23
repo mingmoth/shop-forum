@@ -16,7 +16,9 @@
           </button>
         </div>
         <div class="nav-options">
-          <img src="../assets/setting logo.png" alt="" class="admin-icon" />
+          <router-link to="/admin/products">
+            <img src="../assets/setting logo.png" alt="" class="admin-icon" />
+          </router-link>
           <router-link to="/carts">
             <img src="../assets/cart_icon.png" alt="" class="cart-icon"
           /></router-link>
