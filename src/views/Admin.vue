@@ -40,9 +40,9 @@ export default {
   margin: 1em auto
   padding: 2%
   .admin-nav
-    display: flex
-    +breakpoint(mobile-landscape)
-      justify-content: center
+    margin-left: 1em
+    +breakpoint(mobile)
+    margin-left: 0
     ul
       +breakpoint(mobile-landscape)
         min-width: 300px
@@ -58,6 +58,8 @@ export default {
             background: $light
             color: $mainPink
             border-bottom: 2px solid $mainPink
+          +breakpoint(mobile)
+            padding: 0.5em
         #admin-new
           border-radius: 4px 4px 0 0
           &:hover
@@ -67,6 +69,9 @@ export default {
     padding: 1em
     font-size: 1.3em
     font-weight: 500
+    +breakpoint(mobile)
+      padding: 0.4em
+      font-size: 1em
            
 
 
