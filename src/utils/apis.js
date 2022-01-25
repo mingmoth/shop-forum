@@ -6,13 +6,13 @@ const baseURL = 'http://mysterious-wave-91363.herokuapp.com/api'
 
 export const apiHelper = axios.create({ baseURL })
 
-apiHelper.interceptors.request.use(
-  config => {
-    const token = window.localStorage.getItem('token')
-    if(token) {
-      config.header['Authorization'] = `Bearer ${token}`
-    }
-    return config
-  },
-  err => Promise.reject(err)
-)
+// apiHelper.interceptors.request.use(
+//   config => {
+//     const token = window.localStorage.getItem('token')
+//     if(token) {
+//       config.header['Authorization'] = `Bearer ${token}`
+//     }
+//     return config
+//   },
+//   err => Promise.reject(err)
+// )
