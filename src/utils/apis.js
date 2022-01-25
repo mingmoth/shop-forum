@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://mysterious-wave-91363.herokuapp.com/api'
+const baseURL = 'https://mysterious-wave-91363.herokuapp.com/api/'
 // const baseURL = 'http://localhost:3000/api'
 
 
