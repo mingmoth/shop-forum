@@ -9,7 +9,7 @@ export const productLoader = {
         const response = await productAPI.getProducts()
         console.log(response)
         const { data } = response
-        this.fetchProducts(data)
+        this.fetchProducts(data.products.rows)
       } catch (error) {
         console.log(error)
       }

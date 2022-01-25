@@ -5,7 +5,7 @@
     </div>
     <div class="main">
       <div class="row">
-        <ProductItem v-for="product in products" :key="product" />
+        <ProductItem v-for="product in getProducts" :key="product.id" :product="product"/>
         <Pagination />
       </div>
     </div>
@@ -26,7 +26,6 @@ export default {
   components: { Navbar, ProductItem, Pagination },
   data() {
     return {
-      products: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     };
   },
   created() {

@@ -3,13 +3,13 @@
     <div class="product-container">
       <div class="product-head">
         <router-link to="/products" >
-          <img src="../assets/product_demo.jpg" alt="" class="product-image" />
+          <img :src="product.image" alt="" class="product-image" />
         </router-link> 
       </div>
       <div class="product-body">
-        <router-link to="/products" class="product-name">力宏wang</router-link>
-        <div class="product-description">多的是你不知道的事</div>
-        <div class="product-price"><span>$</span> 律師費</div>
+        <router-link to="/products" class="product-name">{{product.name}}</router-link>
+        <div class="product-description">{{product.description}}</div>
+        <div class="product-price"><span>$</span> {{product.price}}</div>
         <form action="">
           <input type="number" class="product-quantity" min="1" />
           <button class="product-add" @click="$router.push('/signin')">加入購物車</button>
@@ -22,6 +22,11 @@
 <script>
 export default {
   name: "ProductItem",
+  props: {
+    product: {
+      type: Object,
+    }
+  }
 };
 </script>
 
