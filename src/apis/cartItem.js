@@ -4,8 +4,8 @@ export default {
   getCart() {
     return apiHelper.get('/cart')
   },
-  addCartItem(cartItemId) {
-    return apiHelper.post(`/cartItem/${cartItemId}`)
+  addCartItem(productId) {
+    return apiHelper.post(`/cartItem/`, { productId })
   },
   removeCartItem(cartItemId) {
     return apiHelper.delete(`/cartItem/${cartItemId}`)

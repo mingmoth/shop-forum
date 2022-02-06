@@ -62,8 +62,20 @@ export const cartLoader = {
         if (statusText !== "OK") {
           throw new Error(data.message)
         }
+        console.log(data)
         this.fetchCart(data)
       } catch (error) {
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async addCartItem(productId) {
+      try {
+        const response = await cartAPI.addCartItem(productId)
+        console.log(response)
+      } catch (error) {
+        console.log(error)
         errorToast.fire({
           title: error.message
         })

@@ -12,7 +12,7 @@
         <div class="product-price"><span>$</span> {{product.price}}</div>
         <form action="">
           <input type="number" class="product-quantity" min="1" />
-          <button class="product-add" @click="$router.push('/signin')">加入購物車</button>
+          <button class="product-add" @click.stop.prevent="addCart(product.id)">加入購物車</button>
         </form>
       </div>
     </div>
@@ -20,13 +20,20 @@
 </template>
 
 <script>
+import { cartLoader } from '../utils/app'
 export default {
   name: "ProductItem",
+  mixins: [ cartLoader ],
   props: {
     product: {
       type: Object,
     }
-  }
+  },
+  methods: {
+    addCart(productId) {
+      this.addCartItem(productId)
+    },
+  },
 };
 </script>
 
