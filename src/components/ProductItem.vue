@@ -2,12 +2,12 @@
   <div class="product">
     <div class="product-container">
       <div class="product-head">
-        <router-link to="/products" >
+        <router-link :to="{ name: 'products', params: { id: product.id }}" >
           <img :src="product.image" alt="" class="product-image" />
         </router-link> 
       </div>
       <div class="product-body">
-        <router-link to="/products" class="product-name">{{product.name}}</router-link>
+        <router-link :to="{ name: 'products', params: {id: product.id}}" class="product-name">{{product.name}}</router-link>
         <div class="product-description">{{product.description}}</div>
         <div class="product-price"><span>$</span> {{product.price}}</div>
         <form action="">
