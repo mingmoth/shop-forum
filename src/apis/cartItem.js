@@ -1,6 +1,9 @@
 import { apiHelper } from "../utils/apis";
 
 export default {
+  getCart() {
+    return apiHelper.get('/cart')
+  },
   addCartItem(cartItemId) {
     return apiHelper.post(`/cartItem/${cartItemId}`)
   },

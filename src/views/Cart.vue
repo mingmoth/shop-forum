@@ -12,7 +12,7 @@
           <CartItem />
           <CartItem />
         </div>
-        <div class="cart-total">總金額 :<span class="cart-amount"><span>$ </span>律師費</span></div>
+        <div class="cart-total">總金額 :<span class="cart-amount"><span>$ </span>{{getTotalPrice}}</span></div>
         
       </div>
     </div>
@@ -21,11 +21,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { cartLoader } from '../utils/app'
 import Navbar from "../components/Navbar.vue";
 import CartItem from "../components/CartItem.vue";
 export default {
   name: "Cart",
+  mixins: [ cartLoader ],
   components: { Navbar, CartItem },
+  computed: {
+    ...mapGetters(['getCart', 'getTotalPrice'])
+  },
+  created() {
+    this.setCart()
+  },
 };
 </script>
 

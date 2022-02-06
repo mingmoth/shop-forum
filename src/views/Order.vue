@@ -6,11 +6,11 @@
     <div class="main">
       <div class="order-container">
         <p>訂單資訊</p>
-        <div class="order-panel">
+        <div class="order-panel" v-for="order in getOrders" :key="order.id">
           <div class="order-wrapper">
             <div class="order-info">
               <p class="order-serial">
-                訂單編號 : <span class="order-serialNum"># 0123456</span>
+                訂單編號 : <span class="order-serialNum"># {{order.serial_number}}</span>
               </p>
               <table class="table">
                 <thead class="thead-datk">
@@ -34,14 +34,14 @@
             </div>
             <div class="order-pay">
               <div class="order-total">
-                總金額 :<span class="order-amount"><span>$ </span>律師費</span>
+                總金額 :<span class="order-amount"><span>$ </span>{{order.amount}}</span>
               </div>
               <p class="order-status">訂單狀態</p>
               <ul>
-                付款狀態 :
+                付款狀態 : {{order.payment_status}}
               </ul>
               <ul>
-                運送狀態 :
+                運送狀態 : {{order.shipping_status}}
               </ul>
             </div>
           </div>
@@ -53,17 +53,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { orderLoader } from '../utils/app'
+
 import Navbar from "../components/Navbar.vue";
 import OrderItem from "../components/OrderItem.vue";
 export default {
   name: "Order",
+  mixins: [ orderLoader ],
   components: { Navbar, OrderItem },
+  computed: {
+    ...mapGetters(['getOrders']),
+  },
+  created() {
+    this.setOrders()
+  },
 };
 </script>
 
 <style lang="sass" scoped>
 .order-container
   max-width: 1280px
+  max-height: calc( 100vh - 120px - 1em)
   margin: 1em auto
   padding: 2%
   border: 1px solid $border-grey
@@ -71,6 +82,7 @@ export default {
   font-size: 1.3em
   font-weight: 500
   color: $text-content
+  overflow-y: auto
   p
     border-bottom: 1px solid $border-grey
     padding-bottom: 0.5em
