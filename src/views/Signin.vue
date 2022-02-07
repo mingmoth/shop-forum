@@ -74,7 +74,7 @@ export default {
       isProcessing: false,
     };
   },
-  mounted() {
+  created() {
     initialFB();
   },
   methods: {

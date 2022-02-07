@@ -87,7 +87,7 @@ export default {
     border-bottom: 1px solid $border-grey
     padding-bottom: 0.5em
   .order-panel
-    max-height: 600px
+    max-height: 550px
     overflow-y: auto
     padding-bottom: 0.8em
     &::-webkit-scrollbar

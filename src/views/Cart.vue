@@ -7,10 +7,7 @@
       <div class="cart-container">
         <p>購物車列表</p>
         <div class="cart-wrapper">
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          <CartItem v-for="cartItem in getCart" :key="cartItem.id" :cartItem="cartItem"/>
         </div>
         <div class="cart-total">總金額 :<span class="cart-amount"><span>$ </span>{{getTotalPrice}}</span></div>
         
@@ -52,7 +49,7 @@ export default {
     border-bottom: 1px solid $border-grey
     padding-bottom: 0.5em
   .cart-wrapper
-    max-height: 500px
+    height: 550px
     overflow-y: auto
     &::-webkit-scrollbar
       display: none

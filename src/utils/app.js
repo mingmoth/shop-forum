@@ -1,5 +1,5 @@
 import { mapActions } from 'vuex'
-import { errorToast } from '../utils/toast'
+import { successToast, errorToast } from '../utils/toast'
 import productAPI from '../apis/product'
 import orderAPI from '../apis/order'
 import cartAPI from '../apis/cartItem'
@@ -72,8 +72,13 @@ export const cartLoader = {
     },
     async addCartItem(productId) {
       try {
-        const response = await cartAPI.addCartItem(productId)
-        console.log(response)
+        const { data, statusText } = await cartAPI.addCartItem(productId)
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        successToast.fire({
+          title: data.message
+        })
       } catch (error) {
         console.log(error)
         errorToast.fire({
