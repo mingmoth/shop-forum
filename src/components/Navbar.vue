@@ -24,7 +24,7 @@
           /></router-link>
           <router-link to="/orders"><img src="../assets/user logo.png" alt="" /></router-link>
           
-          <img src="../assets/moon_icon.png" alt="" class="theme-toggle-icon" />
+          <router-link to="/signin"><img src="../assets/moon_icon.png" alt="" class="theme-toggle-icon" /></router-link>
         </div>
       </div>
     </nav>

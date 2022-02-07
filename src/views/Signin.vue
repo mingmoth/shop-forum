@@ -40,6 +40,13 @@
         <button class="btn-signin my-2" type="submit" :disabled="isProcessing">
           登入
         </button>
+        <button
+          class="btn-signin my-2"
+          @click.stop.prevent="fbLogin()"
+          :disabled="isProcessing"
+        >
+          使用FaceBook登入
+        </button>
 
         <div class="text-center mb-3">
           <p>
@@ -52,7 +59,8 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue'
+import { initialFB } from "../utils/fb";
+import Navbar from "../components/Navbar.vue";
 
 // import authorizationAPI from "../apis/authorization";
 // import { Toast } from "./../utils/helpers";
@@ -66,7 +74,24 @@ export default {
       isProcessing: false,
     };
   },
+  mounted() {
+    initialFB();
+  },
   methods: {
+    fblogin() {
+      let vm = this;
+      /* global FB */
+      FB.login(
+        function (response) {
+          console.log("res when login", response);
+          vm.getProfile();
+        },
+        {
+          scope: "email, public_profile",
+          return_scopes: true,
+        }
+      );
+    },
     // async handleSubmit(e) {
     //   try {
     //     console.log(e);
