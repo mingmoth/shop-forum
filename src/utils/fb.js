@@ -5,7 +5,7 @@ export const initialFB = () => {
       appId: process.env.VUE_FB_ID,
       cookie: true,
       xfbml: true,
-      version: "v2.9"
+      version: "v12.0"
     });
     FB.AppEvents.logPageView();
 
