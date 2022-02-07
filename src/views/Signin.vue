@@ -78,7 +78,7 @@ export default {
     initialFB();
   },
   methods: {
-    fblogin() {
+    fbLogin() {
       let vm = this;
       /* global FB */
       FB.login(
