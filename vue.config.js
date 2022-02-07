@@ -1,9 +1,16 @@
+const fs = require("fs")
 module.exports = {
   css: {
     loaderOptions: {
       sass: {
         data: `@import "@/styles/main.sass";`
       }
+    }
+  },
+  devServer: {
+    https: {
+      key: fs.readFileSync(`${__dirname}/localhost-key.pem`),
+      cert: fs.readFileSync(`${__dirname}/localhost.pem`)
     }
   },
   publicPath: process.env.NODE_ENV === 'production'
