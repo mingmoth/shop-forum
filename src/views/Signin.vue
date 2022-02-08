@@ -40,6 +40,8 @@
         <button class="btn-signin my-2" type="submit" :disabled="isProcessing">
           登入
         </button>
+        <GoogleBUtton 
+          @sign-in="oAuthSignIn('google', $event)"/>
         <button
           class="btn-signin my-2"
           @click.stop.prevent="fbLogin()"
@@ -59,14 +61,15 @@
 </template>
 
 <script>
-import { initialFB } from "../utils/fb";
+// import { initialFB } from "../utils/fb";
 import Navbar from "../components/Navbar.vue";
+import GoogleBUtton from '../components/GoogleButton.vue'
 
 // import authorizationAPI from "../apis/authorization";
 // import { Toast } from "./../utils/helpers";
 export default {
   name: "SignIn",
-  components: { Navbar },
+  components: { Navbar, GoogleBUtton },
   data() {
     return {
       email: "",
@@ -74,10 +77,21 @@ export default {
       isProcessing: false,
     };
   },
-  created() {
-    initialFB();
-  },
+  // created() {
+  //   initialFB();
+  // },
   methods: {
+    async oAuthSignIn(provider, id_token) {
+      try {
+        await this.$store.dispatch('oAuthLogin', {
+          provider,
+          id_token
+        });
+        this.$emit('submit');
+      } catch (error) {
+        console.error(error);
+      }
+    },
     fbLogin() {
       let vm = this;
       /* global FB */

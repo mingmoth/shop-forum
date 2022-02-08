@@ -9,6 +9,7 @@ module.exports = {
   },
   devServer: {
     https: {
+      enable: true,
       key: fs.readFileSync(`${__dirname}/localhost-key.pem`),
       cert: fs.readFileSync(`${__dirname}/localhost.pem`)
     }
