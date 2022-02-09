@@ -2,7 +2,7 @@ export const initialFB = () => {
   window.fbAsyncInit = function () {
     /* global FB */
     FB.init({
-      appId: process.env.VUE_FB_ID,
+      appId: 751346746252523,
       cookie: true,
       xfbml: true,
       version: "v11.0"

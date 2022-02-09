@@ -40,8 +40,7 @@
         <button class="btn-signin my-2" type="submit" :disabled="isProcessing">
           登入
         </button>
-        <GoogleBUtton 
-          @sign-in="oAuthSignIn('google', $event)"/>
+        <GoogleBUtton @sign-in="oAuthSignIn('google', $event)" />
         <button
           class="btn-signin my-2"
           @click.stop.prevent="fbLogin()"
@@ -61,10 +60,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 import { initialFB } from "../utils/fb";
 import Navbar from "../components/Navbar.vue";
-import GoogleBUtton from '../components/GoogleButton.vue'
+import GoogleBUtton from "../components/GoogleButton.vue";
 
 // import authorizationAPI from "../apis/authorization";
 // import { Toast } from "./../utils/helpers";
@@ -79,7 +78,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getGOOGLE'])
+    ...mapGetters(["getGOOGLE"]),
   },
   created() {
     initialFB();
@@ -87,18 +86,18 @@ export default {
   methods: {
     async oAuthSignIn(provider, id_token) {
       try {
-        await this.$store.dispatch('oAuthLogin', {
+        await this.$store.dispatch("oAuthLogin", {
           provider,
-          id_token
+          id_token,
         });
-        this.$emit('submit');
+        this.$emit("submit");
       } catch (error) {
         console.error(error);
       }
     },
     fbLogin() {
-      let vm = this;
       /* global FB */
+      let vm = this;
       FB.login(
         function (response) {
           console.log("res when login", response);
@@ -109,6 +108,11 @@ export default {
           return_scopes: true,
         }
       );
+    },
+    getProfile() {
+      FB.api("/me?fields=name,id,email", function (response) {
+        console.log("res in graphAPI", response);
+      });
     },
     // async handleSubmit(e) {
     //   try {
