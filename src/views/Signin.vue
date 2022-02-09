@@ -61,7 +61,8 @@
 </template>
 
 <script>
-// import { initialFB } from "../utils/fb";
+import { mapGetters } from 'vuex'
+import { initialFB } from "../utils/fb";
 import Navbar from "../components/Navbar.vue";
 import GoogleBUtton from '../components/GoogleButton.vue'
 
@@ -77,9 +78,12 @@ export default {
       isProcessing: false,
     };
   },
-  // created() {
-  //   initialFB();
-  // },
+  computed: {
+    ...mapGetters(['getGOOGLE'])
+  },
+  created() {
+    initialFB();
+  },
   methods: {
     async oAuthSignIn(provider, id_token) {
       try {

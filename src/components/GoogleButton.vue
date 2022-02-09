@@ -30,7 +30,10 @@ export default {
   },
   methods: {
     signIn(googleUser) {
+      const response = googleUser.getBasicProfile()
+      const { hY, zv } = response
       const id_token = googleUser.getAuthResponse().id_token;
+      console.log(hY, zv)
       this.$emit('sign-in', id_token);
     }
   }
