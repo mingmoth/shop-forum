@@ -1,10 +1,27 @@
-const state = {}
+const state = {
+  currentUser: '',
+  isAithenticated: false
+}
 
-const getters = {}
+const getters = {
+  getCurrentUser: state => state.currentUser
+}
 
-const actions = {}
+const actions = {
+  setCurrentUser({ commit }, user) {
+    commit('getCurrentUser', user)
+  },
+}
 
-const mutations = {}
+const mutations = {
+  getCurrentUser(state, user) {
+    state.currentUser = {
+      ...state.currentUser,
+      ...user
+    }
+    state.isAithenticated = true
+  },
+}
 
 export default {
   state,

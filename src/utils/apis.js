@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseURL = 'https://mysterious-wave-91363.herokuapp.com/api/'
-// const baseURL = 'http://localhost:3000/api'
+// const baseURL = 'https://mysterious-wave-91363.herokuapp.com/api'
+const baseURL = 'http://localhost:3000/api'
 
 export const apiHelper = axios.create({
   baseURL, 
@@ -9,13 +9,13 @@ export const apiHelper = axios.create({
   // crossDomain: true
  })
 
-// apiHelper.interceptors.request.use(
-//   config => {
-//     const token = window.localStorage.getItem('token')
-//     if(token) {
-//       config.header['Authorization'] = `Bearer ${token}`
-//     }
-//     return config
-//   },
-//   err => Promise.reject(err)
-// )
+apiHelper.interceptors.request.use(
+  config => {
+    const token = window.localStorage.getItem('token')
+    if(token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+    return config
+  },
+  err => Promise.reject(err)
+)

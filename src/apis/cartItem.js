@@ -2,10 +2,11 @@ import { apiHelper } from "../utils/apis";
 
 export default {
   getCart() {
-    return apiHelper.get('/cart')
+    console.log()
+    return apiHelper.get('/cart' )
   },
-  addCartItem(productId) {
-    return apiHelper.post(`/cartItem/`, { productId })
+  addCartItem({ productId, idToFindCart }) {
+    return apiHelper.post(`/cartItem/`, { productId, idToFindCart })
   },
   removeCartItem(cartItemId) {
     return apiHelper.delete(`/cartItem/${cartItemId}`)

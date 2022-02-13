@@ -1,4 +1,5 @@
 import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { successToast, errorToast } from '../utils/toast'
 import productAPI from '../apis/product'
 import orderAPI from '../apis/order'
@@ -13,6 +14,7 @@ export const productLoader = {
         const { data } = response
         this.fetchProducts(data.products.rows)
       } catch (error) {
+        console.log(error)
         errorToast.fire({
           title: error.message
         })
@@ -55,24 +57,29 @@ export const orderLoader = {
 
 export const cartLoader = {
   methods: {
+    ...mapGetters(['getCurrentUser']),
     ...mapActions(['fetchCart']),
-    async setCart() {
+    async setCart(userId) {
       try {
-        const { data, statusText } = await cartAPI.getCart()
+        const { data, statusText } = await cartAPI.getCart({idToFindCart: userId})
         if (statusText !== "OK") {
           throw new Error(data.message)
         }
         console.log(data)
         this.fetchCart(data)
       } catch (error) {
+        console.log(error)
         errorToast.fire({
           title: error.message
         })
       }
     },
-    async addCartItem(productId) {
+    async addCartItem(productId, userId) {
       try {
-        const { data, statusText } = await cartAPI.addCartItem(productId)
+        const { data, statusText } = await cartAPI.addCartItem({
+          productId,
+          idToFindCart: userId
+        })
         if (statusText !== 'OK') {
           throw new Error(data.message)
         }

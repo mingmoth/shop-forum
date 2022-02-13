@@ -27,10 +27,10 @@ export default {
   mixins: [ cartLoader ],
   components: { Navbar, CartItem },
   computed: {
-    ...mapGetters(['getCart', 'getTotalPrice'])
+    ...mapGetters(['getCart', 'getTotalPrice', 'getCurrentUser'])
   },
   created() {
-    this.setCart()
+    this.setCart(this.getCurrentUser.id)
   },
 };
 </script>

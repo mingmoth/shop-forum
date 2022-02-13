@@ -10,11 +10,11 @@
         <div class="cart-name">{{cartItem.name}}</div>
         <div class="cart-count">
           <img src="../assets/minus_light.png" alt="" class="cart-minus">
-          <div class="cart-quantity">{{cartItem.quantity}}</div>
+          <div class="cart-quantity">{{cartItem.CartItem.quantity}}</div>
           <img src="../assets/plus_light.png" alt="" class="cart-plus">
         </div>
       </div>
-      <div class="cart-price"><span>$ </span>{{cartItem.price}}</div>
+      <div class="cart-price"><span>$ </span>{{cartItem.price * cartItem.CartItem.quantity}}</div>
       <img src="../assets/trash-solid.png" alt="" class="cart-delete">
     </div>
   </div>

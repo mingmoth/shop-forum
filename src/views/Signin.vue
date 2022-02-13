@@ -62,11 +62,12 @@
 <script>
 import { mapGetters } from "vuex";
 import { initialFB } from "../utils/fb";
+import { errorToast } from "../utils/toast";
+import authorizationAPI from "../apis/authorization";
+
 import Navbar from "../components/Navbar.vue";
 import GoogleBUtton from "../components/GoogleButton.vue";
 
-// import authorizationAPI from "../apis/authorization";
-// import { Toast } from "./../utils/helpers";
 export default {
   name: "SignIn",
   components: { Navbar, GoogleBUtton },
@@ -114,46 +115,45 @@ export default {
         console.log("res in graphAPI", response);
       });
     },
-    // async handleSubmit(e) {
-    //   try {
-    //     console.log(e);
-    //     if (!this.email || !this.password) {
-    //       Toast.fire({
-    //         icon: "warning",
-    //         title: "請填入email和password",
-    //       });
-    //       return;
-    //     }
-    //     this.isProcessing = true;
-    //     const response = await authorizationAPI.signIn({
-    //       email: this.email,
-    //       password: this.password,
-    //     });
-    //     console.log("response", response);
-    //     // 取得 API 請求後的資料
-    //     const { data, statusText } = response;
-    //     // 驗證伺服器回傳status
-    //     if (data.status !== "success" || statusText !== 'OK') {
-    //       throw new Error(data.message);
-    //     }
-    //     // 將 token 存放在 localStorage 內
-    //     localStorage.setItem("token", data.token);
-    //     // 將資料傳到 Vuex 中
-    //     this.$store.commit('setCurrentUser', data.user)
-    //     // 成功登入後轉址到餐廳首頁
-    //     this.$router.push("/restaurants");
-    //   } catch (error) {
-    //     // 將密碼欄位清空
-    //     this.password = "";
-    //     // 顯示錯誤提示
-    //     Toast.fire({
-    //       ixon: "warning",
-    //       title: "請確認您輸入了正確的帳號密碼",
-    //     });
-    //     this.isProcessing = false;
-    //     console.log("error", error);
-    //   }
-    // },
+    async handleSubmit(e) {
+      try {
+        console.log(e);
+        if (!this.email || !this.password) {
+          errorToast.fire({
+            icon: "warning",
+            title: "請填入email和password",
+          });
+          return;
+        }
+        this.isProcessing = true;
+        const response = await authorizationAPI.signIn({
+          email: this.email,
+          password: this.password,
+        });
+        console.log("response", response);
+        // 取得 API 請求後的資料
+        const { data, statusText } = response;
+        // 驗證伺服器回傳status
+        if (data.status !== "success" || statusText !== 'OK') {
+          throw new Error(data.message);
+        }
+        // 將 token 存放在 localStorage 內
+        localStorage.setItem("token", data.token);
+        // 將資料傳到 Vuex 中
+        this.$store.dispatch('setCurrentUser', data.user)
+        // 成功登入後轉址到餐廳首頁
+        this.$router.push("/home");
+      } catch (error) {
+        // 將密碼欄位清空
+        this.password = "";
+        // 顯示錯誤提示
+        errorToast.fire({
+          title: "請確認您輸入正確的帳號密碼",
+        });
+        this.isProcessing = false;
+        console.log("error", error);
+      }
+    },
   },
 };
 </script>
