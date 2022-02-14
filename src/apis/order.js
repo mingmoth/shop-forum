@@ -1,8 +1,8 @@
 import { apiHelper } from "../utils/apis";
 
 export default {
-  createOrder() {
-    return apiHelper.post('/orders')
+  createOrder(payload) {
+    return apiHelper.post('/order', payload)
   },
   getOrders() {
     return apiHelper.get('/orders')

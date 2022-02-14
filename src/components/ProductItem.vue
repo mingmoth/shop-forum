@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import { cartLoader } from '../utils/app'
 export default {
   name: "ProductItem",
@@ -30,12 +30,9 @@ export default {
       type: Object,
     }
   },
-  computed: {
-    ...mapGetters(['getCurrentUser'])
-  },
   methods: {
     addCart(productId) {
-      this.addCartItem(productId, this.getCurrentUser.id)
+      this.addCartItem(productId)
     },
   },
 };

@@ -7,30 +7,47 @@
       <div class="cart-container">
         <p>購物車列表</p>
         <div class="cart-wrapper">
-          <CartItem v-for="cartItem in getCart" :key="cartItem.id" :cartItem="cartItem"/>
+          <CartItem
+            v-for="cartItem in getCart"
+            :key="cartItem.id"
+            :cartItem="cartItem"
+          />
         </div>
-        <div class="cart-total">總金額 :<span class="cart-amount"><span>$ </span>{{getTotalPrice}}</span></div>
-        
+        <div class="cart-total">
+          總金額 :<span class="cart-amount"
+            ><span>$ </span>{{ getTotalPrice }}</span
+          >
+        </div>
+        <button
+          class="btn-checkout"
+          data-bs-toggle="modal"
+          data-bs-target="#check-out-info"
+        >
+          送出購物車
+        </button>
       </div>
     </div>
+    <CheckoutModal />
     <div class="foot"></div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { cartLoader } from '../utils/app'
+import { mapGetters } from "vuex";
+import { cartLoader, orderLoader } from "../utils/app";
+
 import Navbar from "../components/Navbar.vue";
 import CartItem from "../components/CartItem.vue";
+import CheckoutModal from "../components/CheckoutModal.vue";
 export default {
   name: "Cart",
-  mixins: [ cartLoader ],
-  components: { Navbar, CartItem },
+  mixins: [cartLoader, orderLoader],
+  components: { Navbar, CartItem, CheckoutModal },
   computed: {
-    ...mapGetters(['getCart', 'getTotalPrice', 'getCurrentUser'])
+    ...mapGetters(["getCart", "getCartId", "getTotalPrice"]),
   },
   created() {
-    this.setCart(this.getCurrentUser.id)
+    this.setCart(this.getCurrentUser.id);
   },
 };
 </script>
@@ -48,6 +65,13 @@ export default {
   p
     border-bottom: 1px solid $border-grey
     padding-bottom: 0.5em
+  .btn-checkout
+    margin-top: 1em
+    border: none
+    background: $mainPink
+    color: $light
+    font-size: 0.8em
+    border-radius: 6px
   .cart-wrapper
     height: 550px
     overflow-y: auto

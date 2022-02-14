@@ -51,6 +51,17 @@ export const orderLoader = {
           title: error.message
         })
       }
+    },
+    async postOrder(payload) {
+      try {
+        const response = await orderAPI.createOrder(payload)
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
     }
   }
 }
@@ -74,11 +85,10 @@ export const cartLoader = {
         })
       }
     },
-    async addCartItem(productId, userId) {
+    async addCartItem(productId) {
       try {
         const { data, statusText } = await cartAPI.addCartItem({
-          productId,
-          idToFindCart: userId
+          productId
         })
         if (statusText !== 'OK') {
           throw new Error(data.message)

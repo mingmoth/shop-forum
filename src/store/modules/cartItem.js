@@ -1,10 +1,12 @@
 const state = {
   cart: [],
+  cartId: 0,
   cartTotalPrice: 0,
 }
 
 const getters = {
   getCart: state => state.cart,
+  getCartId: state => state.cartId,
   getTotalPrice: state => state.cartTotalPrice
 }
 
@@ -17,6 +19,7 @@ const actions = {
 const mutations = {
   getCart(state, cart) {
     state.cart = cart.cart.items
+    state.cartId = cart.cart.id
     state.cartTotalPrice = cart.totalPrice
   }
 }

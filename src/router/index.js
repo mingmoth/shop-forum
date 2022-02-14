@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
 
+import store from '../store'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -80,6 +82,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  store.dispatch('setCurrentUser')
   next()
 })
 

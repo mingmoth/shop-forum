@@ -1,6 +1,8 @@
+import userAPI from '../../apis/user'
+
 const state = {
   currentUser: '',
-  isAithenticated: false
+  isAuthenticated: false
 }
 
 const getters = {
@@ -8,7 +10,13 @@ const getters = {
 }
 
 const actions = {
-  setCurrentUser({ commit }, user) {
+  async setCurrentUser({ commit }, user) {
+    try {
+      const { data } = await userAPI.getCurrentUser()
+      commit('getCurrentUser', data)
+    } catch (error) {
+      console.log(error)
+    }
     commit('getCurrentUser', user)
   },
 }
@@ -19,8 +27,9 @@ const mutations = {
       ...state.currentUser,
       ...user
     }
-    state.isAithenticated = true
+    state.isAuthenticated = true
   },
+
 }
 
 export default {
