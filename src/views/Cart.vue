@@ -33,8 +33,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { cartLoader, orderLoader } from "../utils/app";
+import { errorToast } from '../utils/toast';
 
 import Navbar from "../components/Navbar.vue";
 import CartItem from "../components/CartItem.vue";
@@ -44,10 +45,18 @@ export default {
   mixins: [cartLoader, orderLoader],
   components: { Navbar, CartItem, CheckoutModal },
   computed: {
-    ...mapGetters(["getCart", "getCartId", "getTotalPrice"]),
+    ...mapState(['isAuthenticated']),
+    ...mapGetters(["getCart", "getCartId", "getTotalPrice", 'getCurrentUser']),
   },
   created() {
-    this.setCart(this.getCurrentUser.id);
+    if(!this.getCurrentUser.name) {
+      errorToast.fire({
+        title: '請先登入後再瀏覽購物車'
+      })
+      this.$router.push('/signin')
+    } else {
+      this.setCart(this.getCurrentUser.id);
+    }
   },
 };
 </script>

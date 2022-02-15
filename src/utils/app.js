@@ -1,5 +1,4 @@
 import { mapActions } from 'vuex'
-import { mapGetters } from 'vuex'
 import { successToast, errorToast } from '../utils/toast'
 import productAPI from '../apis/product'
 import orderAPI from '../apis/order'
@@ -54,8 +53,13 @@ export const orderLoader = {
     },
     async postOrder(payload) {
       try {
-        const response = await orderAPI.createOrder(payload)
-        console.log(response)
+        const { data, statusText } = await orderAPI.createOrder(payload)
+        if (statusText !== "OK") {
+          throw new Error(data.message)
+        }
+        successToast.fire({
+          title: data.message
+        })
       } catch (error) {
         console.log(error)
         errorToast.fire({
@@ -68,15 +72,13 @@ export const orderLoader = {
 
 export const cartLoader = {
   methods: {
-    ...mapGetters(['getCurrentUser']),
-    ...mapActions(['fetchCart']),
+    ...mapActions(['fetchCart', 'setCartItemDelete', 'setCartItemMinus', 'setCartItemPlus']),
     async setCart(userId) {
       try {
         const { data, statusText } = await cartAPI.getCart({idToFindCart: userId})
         if (statusText !== "OK") {
           throw new Error(data.message)
         }
-        console.log(data)
         this.fetchCart(data)
       } catch (error) {
         console.log(error)
@@ -96,6 +98,44 @@ export const cartLoader = {
         successToast.fire({
           title: data.message
         })
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async removeCartItem(cartItemId) {
+      try {
+        const { data, statusText } = await cartAPI.removeCartItem({cartItemId: cartItemId})
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        this.setCartItemDelete(cartItemId)
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    }, 
+    async minusCartItem(cartItemId) {
+      try { 
+        const response = await cartAPI.decreaseCartItem({ cartItemId })
+        console.log(response)
+        this.setCartItemMinus(cartItemId)
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async plusCartItem(cartItemId) {
+      try {
+        const response = await cartAPI.increaseCartItem({cartItemId})
+        console.log(response)
+        this.setCartItemPlus(cartItemId)
       } catch (error) {
         console.log(error)
         errorToast.fire({

@@ -5,16 +5,16 @@ export default {
     console.log()
     return apiHelper.get('/cart' )
   },
-  addCartItem({ productId, idToFindCart }) {
-    return apiHelper.post(`/cartItem/`, { productId, idToFindCart })
+  addCartItem({ productId }) {
+    return apiHelper.post(`/cartItem/`, { productId })
   },
-  removeCartItem(cartItemId) {
-    return apiHelper.delete(`/cartItem/${cartItemId}`)
+  removeCartItem({ cartItemId }) {
+    return apiHelper.put('/cartItem/del', { cartItemId })
   },
-  increaseCartItem(cartItemId) {
-    return apiHelper.put(`/cartItem/${cartItemId}/add`)
+  increaseCartItem({cartItemId}) { 
+    return apiHelper.put('/cartItem/add', { cartItemId })
   },
-  decreaseCartItem(cartItemId) {
-    return apiHelper.put(`/cartItem/${cartItemId}/sub`)
+  decreaseCartItem({cartItemId}) {
+    return apiHelper.put('/cartItem/sub', { cartItemId })
   }
 }

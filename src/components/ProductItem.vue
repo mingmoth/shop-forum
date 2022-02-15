@@ -20,8 +20,9 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import { cartLoader } from '../utils/app'
+import { errorToast } from '../utils/toast';
 export default {
   name: "ProductItem",
   mixins: [ cartLoader ],
@@ -30,9 +31,20 @@ export default {
       type: Object,
     }
   },
+  computed: {
+    ...mapGetters(['getCurrentUser'])
+  },
   methods: {
     addCart(productId) {
-      this.addCartItem(productId)
+      if(!this.getCurrentUser.name) {
+        errorToast.fire({
+          title: '請先登入後再加入商品'
+        })
+        this.$router.push('/signin')
+      } else {
+        this.addCartItem(productId)
+      }
+      
     },
   },
 };

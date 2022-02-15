@@ -15,6 +15,9 @@
           <button
             class="btn-checkout"
             @click.stop.prevent="checkoutCart(getCartId)"
+            :disabled="checkout"
+            data-bs-dismiss="modal"
+            aria-label="Close"
           >
             確認
           </button>
@@ -80,6 +83,11 @@ export default {
   mixins: [ orderLoader ],
   computed: {
     ...mapGetters(["getCart", "getCartId", "getTotalPrice"]),
+    checkout() {
+      if(this.name && this.address && this.phone) {
+        return false
+      } else return true
+    },
   },
   data() {
     return {
@@ -104,6 +112,9 @@ export default {
         phone: this.phone,
       };
       this.postOrder(payload);
+      this.name = ''
+      this.address = ''
+      this.phone = ''
       this.$router.push("/orders");
     },
   },

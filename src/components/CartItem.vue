@@ -9,25 +9,43 @@
       <div class="cart-sum">
         <div class="cart-name">{{cartItem.name}}</div>
         <div class="cart-count">
-          <img src="../assets/minus_light.png" type="button" alt="" class="cart-minus">
-          <div class="cart-quantity">{{cartItem.CartItem.quantity}}</div>
-          <img src="../assets/plus_light.png" type="button" alt="" class="cart-plus" :disabled="cartItem.CartItem.quantity<2">
+          <button 
+            class="cart-minus"
+            :disabled="cartItem.quantity<2"
+            @click.stop.prevent="decreaseCartItem(cartItem.CartItem.id)">-</button>
+          <div class="cart-quantity">{{cartItem.quantity}}</div>
+          <button
+            class="cart-plus"
+            @click.stop.prevent="increaseCartItem(cartItem.CartItem.id)">+</button>
         </div>
       </div>
-      <div class="cart-price"><span>$ </span>{{cartItem.price * cartItem.CartItem.quantity}}</div>
-      <img src="../assets/trash-solid.png" alt="" class="cart-delete" @click.stop.prevent="deleteCartItem()">
+      <div class="cart-price"><span>$ </span>{{cartItem.price * cartItem.quantity}}</div>
+      <img src="../assets/trash-solid.png" alt="" class="cart-delete" @click.stop.prevent="deleteCartItem(cartItem.CartItem.id)">
     </div>
   </div>
 </template>
 
 <script>
+import { cartLoader } from '../utils/app'
 export default {
   name: 'CartItem',
+  mixins: [ cartLoader ],
   props: {
     cartItem: {
       type: Object,
     }
-  }
+  },
+  methods: {
+    deleteCartItem(cartItemId) {
+      this.removeCartItem(cartItemId)
+    },
+    decreaseCartItem(cartItemId) {
+      this.minusCartItem(cartItemId)
+    },
+    increaseCartItem(cartItemId) {
+      this.plusCartItem(cartItemId)
+    },
+  },
 }
 </script>
 

@@ -1,15 +1,20 @@
 <template>
   <tr class="order">
     <!-- <th scope="row"></th> -->
-    <td>力宏Wanggggg</td>
-    <td>1</td>
-    <td><span>$ </span> 律師費</td>
+    <td>{{item.name}}</td>
+    <td>{{item.OrderItem.quantity}}</td>
+    <td><span></span> {{item.price}}</td>
   </tr>
 </template>
 
 <script>
 export default {
   name: 'OrderItem',
+  props: {
+    item: {
+      type: Object,
+    }
+  }
 }
 </script>
 

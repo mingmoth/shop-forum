@@ -22,11 +22,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <OrderItem />
-                  <OrderItem />
-                  <OrderItem />
-                  <OrderItem />
-                  <OrderItem />
+                  <OrderItem v-for="item in order.items" :key="item.id" :item="item"/>
                 </tbody>
               </table>
 
@@ -55,6 +51,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { orderLoader } from '../utils/app'
+import { errorToast } from '../utils/toast'
 
 import Navbar from "../components/Navbar.vue";
 import OrderItem from "../components/OrderItem.vue";
@@ -63,10 +60,19 @@ export default {
   mixins: [ orderLoader ],
   components: { Navbar, OrderItem },
   computed: {
-    ...mapGetters(['getOrders']),
+    ...mapGetters(['getOrders', 'getCurrentUser']),
   },
   created() {
-    this.setOrders()
+    console.log('yead')
+    if(!this.getCurrentUser.name) {
+      errorToast.fire({
+        title: '請先登入後再瀏覽歷史訂單'
+      })
+      this.$router.push('/signin')
+    } else {
+      this.setOrders()
+    }
+    
   },
 };
 </script>
