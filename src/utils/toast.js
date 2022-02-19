@@ -9,7 +9,7 @@ const successToast = Swal.mixin({
   buttonsStyling: false,
   position: 'top-end',
   showConfirmButton: false,
-  timer: 3000
+  timer: 1000
 })
 
 const errorToast = Swal.mixin({
@@ -18,7 +18,7 @@ const errorToast = Swal.mixin({
   buttonsStyling: false,
   position: 'top-end',
   showConfirmButton: false,
-  timer: 3000
+  timer: 1000
 })
 
 export { successToast, errorToast }

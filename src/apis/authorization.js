@@ -4,7 +4,7 @@ export default {
   signIn({ email, password }) {
     return apiHelper.post('/signin', { email, password })
   },
-  signUp({ name, account, email, password, checkPassword }) {
-    return apiHelper.post('/users', { name, account, email, password, checkPassword })
+  signUp({ name, email, password, passwordCheck }) {
+    return apiHelper.post('/signup', { name, email, password, passwordCheck })
   }
 }

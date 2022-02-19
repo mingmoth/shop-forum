@@ -2,11 +2,11 @@
   <div>
     <nav>
       <div class="nav-container">
-        <router-link to="/home" class="nav-logo" >
+        <router-link to="/home" class="nav-logo">
           <span>My JEANS</span>
         </router-link>
         <div class="search-container">
-          <input type="text" name="search" id="search" />
+          <input type="text" name="search" id="search" placeholder="開始搜尋" />
           <button>
             <img
               src="../assets/icon_light_search.png"
@@ -15,16 +15,40 @@
             />
           </button>
         </div>
-        <div class="nav-options">
-          <router-link v-if="getCurrentUser.role === 'admin'" to="/admin/products">
-            <img src="../assets/setting logo.png" alt="" class="admin-icon" />
+        <div
+          :class="['nav-toggle', { 'nav-toggled': open }]"
+          @click.stop.prevent="toggle"
+        >
+          <div class="nav-ham"></div>
+        </div>
+        <div class="nav-options" v-show="open">
+          <router-link
+            v-if="getCurrentUser.role === 'admin'"
+            to="/admin/products"
+            class="nav-options-item mb-2"
+          >
+            後臺管理
           </router-link>
-          <router-link to="/carts">
-            <img src="../assets/cart_icon.png" alt="" class="cart-icon"
-          /></router-link>
-          <router-link to="/orders"><img src="../assets/user logo.png" alt="" /></router-link>
-          
-          <router-link to="/signin"><img src="../assets/moon_icon.png" alt="" class="theme-toggle-icon" /></router-link>
+          <router-link to="/carts" class="nav-options-item mb-2">
+            購物車</router-link
+          >
+          <router-link to="/orders" class="nav-options-item mb-2"
+            >訂單列表</router-link
+          >
+          <div
+            v-if="this.getCurrentUser.name"
+            class="nav-options-item mb-2"
+            @click="logout"
+            >登出</div
+          >
+          <div v-else>
+            <router-link to="/signin"  class="nav-options-item mb-2"
+            >登入</router-link
+          >
+          <router-link to="/signup"  class="nav-options-item mb-2"
+            >註冊</router-link
+          >
+          </div>
         </div>
       </div>
     </nav>
@@ -32,11 +56,25 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
   name: "Navbar",
   computed: {
-    ...mapGetters(['getCurrentUser'])
+    ...mapGetters(["getCurrentUser"]),
+  },
+  data() {
+    return {
+      open: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.open = !this.open;
+    },
+    logout() {
+      this.$store.dispatch('setLogout')
+      this.$router.push('/signin')
+    }
   },
 };
 </script>

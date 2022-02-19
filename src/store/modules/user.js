@@ -19,6 +19,9 @@ const actions = {
     }
     commit('getCurrentUser', user)
   },
+  setLogout({ commit }) {
+    commit('logoutUser')
+  }
 }
 
 const mutations = {
@@ -29,6 +32,11 @@ const mutations = {
     }
     state.isAuthenticated = true
   },
+  logoutUser(state) {
+    localStorage.removeItem('token')
+    state.currentUser = ''
+    state.isAuthenticated = false
+  }
 
 }
 

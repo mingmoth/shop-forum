@@ -165,7 +165,7 @@ export default {
 
 <style lang="sass" scoped>
 .container
-  margin-top: 150px
+  margin-top: 100px
 .wrapper
   max-width: 500px
   border-radius: 1em

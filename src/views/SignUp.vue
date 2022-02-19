@@ -73,7 +73,7 @@
 
         <div class="text-center mb-3">
           <p>
-            <router-link to="/signin" class="signIn">取消</router-link>
+            <router-link to="/signin" class="signIn">登入</router-link>
           </p>
         </div>
       </form>
@@ -83,10 +83,10 @@
 
 
 <script>
-// import authorizationAPI from '../apis/authorization'
-// import {Toast} from '../utils/helpers'
+import authorizationAPI from "../apis/authorization";
+import { successToast, errorToast } from "../utils/toast";
 
-import Navbar from '../components/Navbar.vue'
+import Navbar from "../components/Navbar.vue";
 export default {
   name: "SignIn",
   components: { Navbar },
@@ -100,54 +100,53 @@ export default {
     };
   },
   methods: {
-    // async handleSubmit() {
-    //   try {
-    //     if(!this.name || !this.email || !this.password || !this.passwordCheck) {
-    //       Toast.fire({
-    //         icon: 'warning',
-    //         title: '尚有空白欄位未填寫'
-    //       })
-    //       return
-    //     }
-    //     if(this.password !== this.passwordCheck) {
-    //       Toast.fire({
-    //         icon: 'warning',
-    //         title: '兩次輸入的密碼不同'
-    //       })
-    //       this.passwordCheck = ''
-    //       return
-    //     }
-    //     this.isProcessing = true
-    //     const {data} = await authorizationAPI.signUp({
-    //       name: this.name,
-    //       email: this.email,
-    //       password: this.password,
-    //       passwordCheck: this.passwordCheck
-    //     })
-    //     if(data.status === "error") {
-    //       throw new Error(data.message)
-    //     }
-    //     Toast.fire({
-    //       icon: 'success',
-    //       title: data.message
-    //     })
-    //     this.$router.push('/signin')
-    //   } catch (error) {
-    //     console.log(error)
-    //     this.isProcessing = false
-    //     Toast.fire({
-    //       icon: 'error',
-    //       title: `無法註冊使用--${error.message}`
-    //     })
-    //   }
-    // }
+    async handleSubmit() {
+      try {
+        if (
+          !this.name ||
+          !this.email ||
+          !this.password ||
+          !this.passwordCheck
+        ) {
+          errorToast.fire({
+            title: "尚有空白欄位未填寫",
+          });
+          return;
+        }
+        if (this.password !== this.passwordCheck) {
+          errorToast.fire({
+            title: "兩次輸入的密碼不同",
+          });
+          this.passwordCheck = "";
+          return;
+        }
+        this.isProcessing = true;
+        const { data } = await authorizationAPI.signUp({
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          passwordCheck: this.passwordCheck,
+        });
+        if (data.status === "error") {
+          throw new Error(data.message);
+        }
+        successToast.fire({
+          title: data.message,
+        });
+        this.$router.push("/signin");
+      } catch (error) {
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
   },
 };
 </script>
 
 <style lang="sass" scoped>
 .container
-  margin-top: 150px
+  margin-top: 100px
 .wrapper
   max-width: 500px
   border-radius: 1em
