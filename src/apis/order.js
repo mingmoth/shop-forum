@@ -5,7 +5,7 @@ export default {
     return apiHelper.post('/order', payload)
   },
   getOrders() {
-    return apiHelper.get('/orders')
+    return apiHelper.get('/order')
   },
   getOrder(orderId) {
     return apiHelper.get(`/orders/${orderId}`)

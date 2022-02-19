@@ -6,7 +6,7 @@
     <div class="container">
       <form class="wrapper" @submit.prevent.stop="handleSubmit">
         <div class="text-center mb-4">
-          <h1 class="h3 mb-3 font-weight-normal">註冊使用 Alpha Shop</h1>
+          <h1 class="signup-title">成為 My JEANS 的一員吧</h1>
         </div>
 
         <div class="form-label-group mb-2">
@@ -147,21 +147,34 @@ export default {
 
 <style lang="sass" scoped>
 .container
-  margin-top: 200px
+  margin-top: 150px
 .wrapper
-  width: 50%
+  max-width: 500px
+  border-radius: 1em
+  with: 90%
   margin: 0 auto
+  padding: 1.5em
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
   +breakpoint(mobile)
     width: 100%
+.signup-title
+  font-size: 28px
+  font-weight: 900
+.form-label-group
+  input
+    margin-top: 0.5em
 .btn-signup
   width: 100%
-  border: none
+  border: 1px solid $mainPink
   background: $mainPink
   color: $light
   height: 40px
   font-size: 1em
   font-weight: 500
-  border-radius: 40px
+  border-radius: 0.25em
+  &:hover
+    background: $light
+    color: $mainPink
 .signIn
   color: $mainPink
   font-size: 1em

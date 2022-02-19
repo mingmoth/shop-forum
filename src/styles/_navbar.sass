@@ -1,54 +1,55 @@
 nav
-  background: $mainPink
   width: 100%
+  box-shadow: 3px 0px 2px 3px $footer-grey
   .nav-container
     max-width: 1280px
     margin: 0 auto
-    height: 60px
+    height: 80px
     display: flex
     align-items: center
+    justify-content: space-between
     padding: 2%
-
     .nav-logo
-      width: 130px
-      height: 18.39px
       margin-right: 2%
       cursor: pointer
-      img
-        width: 130px
-        height: 18.39px
-        object-fit: cover
+      text-decoration: none
+      color: $text-content
+      font-size: 32px
+      font-weight: 900
       +breakpoint(mobile)
         display: none
     img
       width: 24px
       height: 24px
     .search-container
-      width: 100%
       min-width: 300px
+      border: 1px solid $footer-grey
+      height: 50px
+      border-radius: 25px
       display: inline
       position: relative
       #search
         border: none
+        background: transparent
         border-radius: 5px
-        height: 35px
+        height: 50px
         width: 100%
         outline: none
-        padding-left: 2%
+        padding-left: 5%
       button
         position: absolute
-        right: 1%
-        border-radius: 5px
-        width: 56px
-        height: 28px
+        top: 6.5px
+        right: 7px
+        border-radius: 50%
+        width: 35px
+        height: 35px
         border: none
         background: $mainPink
-        top: calc( 50% - 13.5px )
 
         .search-icon
-          width: 20px
-          height: 20px
-          line-height: 30px
+          width: 15px
+          height: 15px
+          line-height: 35px
           margin-bottom: 4px
     .nav-options
       width: 20%

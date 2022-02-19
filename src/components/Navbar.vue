@@ -3,7 +3,7 @@
     <nav>
       <div class="nav-container">
         <router-link to="/home" class="nav-logo" >
-          <img src="../assets/logo_text.png" alt="" />
+          <span>My JEANS</span>
         </router-link>
         <div class="search-container">
           <input type="text" name="search" id="search" />

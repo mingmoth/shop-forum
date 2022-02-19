@@ -6,7 +6,7 @@
     <div class="container">
       <form class="wrapper" @submit.prevent.stop="handleSubmit">
         <div class="text-center mb-4">
-          <h1 class="h3 mb-3 font-weight-bold">登入 Alpha Shop</h1>
+          <h1 class="signin-title">登入 My JEANS</h1>
         </div>
 
         <div class="form-label-group mb-2">
@@ -40,7 +40,18 @@
         <button class="btn-signin my-2" type="submit" :disabled="isProcessing">
           登入
         </button>
-        <GoogleBUtton @sign-in="oAuthSignIn('google', $event)" />
+        <div class="mb-2">
+          <p class="signup-direct">還沒有加入My JEANS? 立即<router-link to="/signup" class="signUp">註冊</router-link>吧
+          </p>
+        </div>
+        <button
+          class="btn-signin my-2"
+          @click.stop.prevent="fbLogin()"
+          :disabled="isProcessing"
+        >
+          使用Google登入
+        </button>
+        <!-- <GoogleBUtton @sign-in="oAuthSignIn('google', $event)" /> -->
         <button
           class="btn-signin my-2"
           @click.stop.prevent="fbLogin()"
@@ -49,11 +60,6 @@
           使用FaceBook登入
         </button>
 
-        <div class="text-center mb-3">
-          <p>
-            <router-link to="/signup" class="signUp">註冊</router-link>
-          </p>
-        </div>
       </form>
     </div>
   </div>
@@ -66,11 +72,11 @@ import { errorToast } from "../utils/toast";
 import authorizationAPI from "../apis/authorization";
 
 import Navbar from "../components/Navbar.vue";
-import GoogleBUtton from "../components/GoogleButton.vue";
+// import GoogleBUtton from "../components/GoogleButton.vue";
 
 export default {
   name: "SignIn",
-  components: { Navbar, GoogleBUtton },
+  components: { Navbar },
   data() {
     return {
       email: "",
@@ -159,23 +165,40 @@ export default {
 
 <style lang="sass" scoped>
 .container
-  margin-top: 200px
+  margin-top: 150px
 .wrapper
-  width: 50%
+  max-width: 500px
+  border-radius: 1em
+  with: 90%
   margin: 0 auto
+  padding: 1.5em
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
   +breakpoint(mobile)
     width: 100%
+.signin-title
+  font-size: 28px
+  font-weight: 900
+.form-label-group
+  input
+    margin-top: 0.5em
 .btn-signin
   width: 100%
-  border: none
+  border: 1px solid $mainPink
   background: $mainPink
   color: $light
   height: 40px
   font-size: 1em
   font-weight: 500
-  border-radius: 40px
+  border-radius: 0.25em
+  &:hover
+    background: $light
+    color: $mainPink
+.signup-direct
+  color: $footer-text-grey
+  font-size: 1em
 .signUp
   color: $mainPink
   font-size: 1em
   font-weight: 500
+  text-decoration: none
 </style>
