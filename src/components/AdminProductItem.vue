@@ -17,10 +17,7 @@
         </div>
       </div>
       <div class="cart-price"><span>$ </span>{{ product.price }}</div>
-      <div class="cart-action">
-        <img src="../assets/cart_edit.png" alt="" class="cart-edit" />
-        <img src="../assets/trash-solid.png" alt="" class="cart-delete" />
-      </div>
+      <img src="../assets/trash-solid.png" alt="" class="cart-delete" />
     </div>
   </div>
 </template>
@@ -38,4 +35,12 @@ export default {
 
 <style lang="sass" scoped>
 @import '../styles/_cart'
+.cart
+  &-body
+    position: relative
+    .cart-delete
+      position: absolute
+      height: 28px
+      left: 15px
+      bottom: 12px
 </style>

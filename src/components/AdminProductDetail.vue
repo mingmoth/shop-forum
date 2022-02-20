@@ -5,22 +5,21 @@
         <div class="detail-back" @click="$router.back()">
           <img src="../assets/angle-left-solid.svg" alt="" class="detail-back-img">
         </div>
-        <img :src="getProduct.image" alt="" class="detail-photo">
+        <img :src="getAdminProduct.image" alt="" class="detail-photo">
       </div>
       <div class="detail-canvas"></div>
     </div>
     <div class="detail-body">
-      <div class="detail-name">{{getProduct.name}}</div>
-      <div class="detail-price"><span>$ </span>{{getProduct.price}}</div>
+      <label class="detail-label" for="description">商品名稱  :</label>
+      <div class="detail-name">{{getAdminProduct.name}}</div>
+      <label class="detail-label" for="description">商品價格  :</label>
+      <div class="detail-price"><span>$ </span>{{getAdminProduct.price}}</div>
+      <label class="detail-label" for="description">商品描述  :</label>
       <div class="detail-description">
-        {{getProduct.description}}
+        {{getAdminProduct.description}}
       </div>
       <form action="">
-        <div class="detail-quantity">
-          <label for="quantity">數量  :</label>
-          <input type="number" id="quantity" name="quantity" min="0"/>
-        </div>
-        <button class="detail-add" @click.stop.prevent="addCart(getProduct.id)"></button>
+        <router-link :to="{name: 'admin-edit', params: { id: getAdminProduct.id }}"><button class="detail-add">編輯</button></router-link>
       </form>
     </div>
   </div>
@@ -28,34 +27,29 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { productLoader, cartLoader } from '../utils/app'
-import { errorToast } from '../utils/toast'
+import { productLoader, cartLoader, adminLoader } from '../utils/app'
 
 export default {
-  name: "ProductDetail",
-  mixins: [productLoader, cartLoader],
+  name: "AdminProductDetail",
+  mixins: [productLoader, cartLoader, adminLoader],
   computed: {
-    ...mapGetters(['getProduct', 'getCurrentUser'])
+    ...mapGetters(['getAdminProduct', 'getCurrentUser'])
   },
   created() {
     const { id: productId } = this.$route.params
-    this.setProduct(productId)
+    this.setAdminProduct(productId)
   },
-  methods: {
-    addCart(productId) {
-      if(!this.getCurrentUser.name) {
-        errorToast.fire({
-          title: '請先登入後再加入商品'
-        })
-        this.$router.push('/signin')
-      } else {
-        this.addCartItem(productId)
-      }
-    },
+  beforeRouteUpdate(to, from , next) {
+    const { id: productId } = to.params
+    this.setAdminProduct(productId)
+    next()
   }
 };
 </script>
 
 <style lang="sass" scoped>
 @import '../styles/_detail'
+
+.detail-label
+  color: $footer-text-grey
 </style>

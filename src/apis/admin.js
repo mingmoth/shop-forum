@@ -4,7 +4,10 @@ export default {
   adminProducts() {
     return apiHelper.get('/admin/products')
   },
-  adminProduct() {
-    return apiHelper.get('/admin/product')
+  adminProduct(productId) {
+    return apiHelper.get(`/admin/product/${productId}`)
+  },
+  adminProductEdit(payload) {
+    return apiHelper.put('/admin/product', payload)
   }
 }

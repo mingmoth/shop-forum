@@ -156,24 +156,36 @@ export const adminLoader = {
         if (statusText !== 'OK') {
           throw new Error(data.message)
         }
-        console.log(data)
         this.fetchAdminProducts(data.products.rows)
       } catch (error) {
-        console.log(error)
         errorToast.fire({
           title: error.message
         })
       }
     },
-    async setAdminProduct() {
+    async setAdminProduct(productId) {
       try {
-        const { data, statusText } = await adminAPI.adminProduct()
+        const { data, statusText } = await adminAPI.adminProduct(productId)
         if (statusText !== 'OK') {
           throw new Error(data.message)
         }
-        console.log(data)
+        this.fetchAdminProduct(data)
       } catch (error) {
-        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async setProductEdit(payload) {
+      try {
+        const { data, statusText } = await adminAPI.adminProductEdit(payload)
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        successToast.fire({
+          title: data.message
+        })
+      } catch (error) {
         errorToast.fire({
           title: error.message
         })

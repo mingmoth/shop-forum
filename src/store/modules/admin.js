@@ -10,7 +10,6 @@ const getters = {
 
 const actions = {
   fetchAdminProducts({ commit }, products) {
-    console.log('fetch')
     commit('getAdminProducts', products)
   },
   fetchAdminProduct({ commit }, product) {

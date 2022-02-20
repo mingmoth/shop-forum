@@ -41,6 +41,11 @@ export default {
     const { id: productId } = this.$route.params
     this.setProduct(productId)
   },
+  beforeRouteUpdate(to, from , next) {
+    const { id: productId } = to.params
+    this.setProduct(productId)
+    next()
+  },
   methods: {
     addCart(productId) {
       if(!this.getCurrentUser.name) {
