@@ -44,7 +44,6 @@ export default {
       } else {
         this.addCartItem(productId)
       }
-      
     },
   },
 };

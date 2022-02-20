@@ -183,8 +183,8 @@ export default {
     margin-top: 0.5em
 .btn-signin
   width: 100%
-  border: 1px solid $mainPink
-  background: $mainPink
+  border: 1px solid $step-checked
+  background: $step-checked
   color: $light
   height: 40px
   font-size: 1em
@@ -192,12 +192,12 @@ export default {
   border-radius: 0.25em
   &:hover
     background: $light
-    color: $mainPink
+    color: $step-checked
 .signup-direct
   color: $footer-text-grey
   font-size: 1em
 .signUp
-  color: $mainPink
+  color: $step-checked
   font-size: 1em
   font-weight: 500
   text-decoration: none

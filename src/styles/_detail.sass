@@ -27,19 +27,36 @@
         top: 0
         left: 0
         object-fit: cover
-        +breakpoint(mobile)
-          object-fit: contain
+      .detail-back
+        position: absolute
+        top: 2%
+        left: 2%
+        width: 40px
+        height: 40px
+        z-index: 2
+        background: $footer-grey
+        border-radius: 50%
+        cursor: pointer
+        &:hover
+          background: $light
+        &-img
+          margin-left: 9px
+          width: 20px
+          height: 40px
+        
   .detail-body
     .detail-name
-      font-size: 1.5em
+      font-size: 1.7em
+      font-weight: 700
       margin-bottom: 2%
     .detail-price
-      font-size: 1em
-      color: $mainPink
+      font-size: 1.5em
+      color: $text-content
       margin-bottom: 4%
     .detail-description
       white-space: pre-line
       margin-bottom: 4%
+      color: $input-grey
     form
       .detail-quantity
         margin-bottom: 4%
@@ -59,9 +76,12 @@
           &:hover, &:active
             outline: 1px solid $input-grey
       .detail-add
-        background: $mainPink
-        border: none
+        background: $light
+        border: 1px solid $step-checked
         border-radius: 4px
         height: 36px
         width: 150px
-        color: $light
+        color: $step-checked
+        &:hover
+          background: $step-checked
+          color: $light

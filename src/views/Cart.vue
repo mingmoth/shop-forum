@@ -77,7 +77,7 @@ export default {
   .btn-checkout
     margin-top: 1em
     border: none
-    background: $mainPink
+    background: $text-content
     color: $light
     font-size: 0.8em
     border-radius: 6px
@@ -92,5 +92,5 @@ export default {
     font-weight: 400
   .cart-amount
     float: right
-    color: $mainPink
+    color: $text-content
 </style>

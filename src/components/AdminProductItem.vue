@@ -1,31 +1,39 @@
 <template>
   <div class="cart">
     <div class="cart-head">
-      <router-link to="/products">
-      <img src="../assets/product_detail.jpeg" alt="" class="cart-image"></router-link>
-      <div></div>
+      <router-link :to="{ name: 'admin-product', params: { id: product.id } }">
+        <img :src="product.image" alt="" class="cart-image"
+      /></router-link>
     </div>
     <div class="cart-body">
       <div class="cart-sum">
-        <div class="cart-name">力宏Wanggggggggg</div>
+        <router-link
+          class="cart-name"
+          :to="{ name: 'admin-product', params: { id: product.id } }"
+          >{{ product.name }}</router-link
+        >
         <div class="cart-count">
-          <div class="cart-description">多的是你不知道的事</div>
+          <div class="cart-description">{{ product.description }}</div>
         </div>
       </div>
-      <div class="cart-price"><span>$ </span>律師費</div>
+      <div class="cart-price"><span>$ </span>{{ product.price }}</div>
       <div class="cart-action">
-        <img src="../assets/cart_edit.png" alt="" class="cart-edit">
-        <img src="../assets/trash-solid.png" alt="" class="cart-delete">
+        <img src="../assets/cart_edit.png" alt="" class="cart-edit" />
+        <img src="../assets/trash-solid.png" alt="" class="cart-delete" />
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AdminProductItem',
-}
+  name: "AdminProductItem",
+  props: {
+    product: {
+      type: Object,
+    },
+  },
+};
 </script>
 
 <style lang="sass" scoped>

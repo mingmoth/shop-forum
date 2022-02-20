@@ -20,7 +20,7 @@
           <label for="quantity">數量  :</label>
           <input type="number" id="quantity" name="quantity" min="0"/>
         </div>
-        <button class="detail-add" @click.stop.prevent="addCart(getProduct.id)">加入購物車</button>
+        <button class="detail-add" @click.stop.prevent="addCart(getProduct.id)"></button>
       </form>
     </div>
   </div>

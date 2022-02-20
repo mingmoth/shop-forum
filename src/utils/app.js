@@ -3,6 +3,7 @@ import { successToast, errorToast } from '../utils/toast'
 import productAPI from '../apis/product'
 import orderAPI from '../apis/order'
 import cartAPI from '../apis/cartItem'
+import adminAPI from '../apis/admin'
 
 export const productLoader = {
   methods: {
@@ -136,6 +137,41 @@ export const cartLoader = {
         const response = await cartAPI.increaseCartItem({cartItemId})
         console.log(response)
         this.setCartItemPlus(cartItemId)
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    }
+  }
+}
+
+export const adminLoader = {
+  methods: {
+    ...mapActions(['fetchAdminProducts', 'fetchAdminProduct']),
+    async setAdminProducts() {
+      try {
+        const { data, statusText }= await adminAPI.adminProducts()
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        console.log(data)
+        this.fetchAdminProducts(data.products.rows)
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async setAdminProduct() {
+      try {
+        const { data, statusText } = await adminAPI.adminProduct()
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        console.log(data)
       } catch (error) {
         console.log(error)
         errorToast.fire({

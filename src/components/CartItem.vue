@@ -7,7 +7,7 @@
     </div>
     <div class="cart-body">
       <div class="cart-sum">
-        <div class="cart-name">{{cartItem.name}}</div>
+        <router-link class="cart-name" :to="{ name: 'products', params: { id: cartItem.id } }">{{cartItem.name}}</router-link>
         <div class="cart-count">
           <button 
             class="cart-minus"

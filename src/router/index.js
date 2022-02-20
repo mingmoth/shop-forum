@@ -71,6 +71,11 @@ const router = new VueRouter({
           name: 'admin-products',
           component: () => import('../views/AdminProducts.vue')
         },
+        {
+          path: '/admin/products/:id',
+          name: 'admin-product',
+          component: () => import('../views/AdminProduct.vue')
+        },
       ]
     },
     {

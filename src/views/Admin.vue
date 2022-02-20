@@ -56,15 +56,15 @@ export default {
           font-weight: 500
           &:hover, &.active
             background: $light
-            color: $mainPink
-            border-bottom: 2px solid $mainPink
+            color: $text-content
+            border-bottom: 2px solid $text-content
           +breakpoint(mobile)
             padding: 0.5em
         #admin-new
           border-radius: 4px 4px 0 0
           &:hover
             color: $light
-            background: $mainPink
+            background: $text-content
   .admin-title
     padding: 1em
     font-size: 1.3em

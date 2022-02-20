@@ -135,7 +135,7 @@ export default {
   color: #657786
 .btn-checkout
   border: none
-  background: $mainPink
+  background: $text-content
   color: $light
   font-size: 18px
   border-radius: 6px

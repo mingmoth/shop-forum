@@ -26,5 +26,5 @@
     margin-top: 16px
     li
       .page-link
-        color: $mainPink
+        color: $text-content
 </style>

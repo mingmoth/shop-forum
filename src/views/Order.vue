@@ -117,13 +117,13 @@ export default {
         border: none
         margin-bottom: 0
         .order-serialNum
-          color: $mainPink
+          color: $step-checked
       table
         width: calc( 100% - 1em )
         font-size: 16px
         border-radius: 4px 4px 0 0
         thead
-          background: $mainPink
+          background: $step-checked
           color: $light
           font-weight: 300
       +breakpoint(mobile)
@@ -144,7 +144,7 @@ export default {
         margin-bottom: 0.5em
       .order-amount
         float: right
-        color: $mainPink
+        color: $step-checked
       .order-status
         border: none
       ul
