@@ -46,15 +46,13 @@
         </div>
         <button
           class="btn-signin my-2"
-          @click.stop.prevent="fbLogin()"
-          :disabled="isProcessing"
+          disabled="true"
         >
           使用Google登入
         </button>
-        <!-- <GoogleBUtton @sign-in="oAuthSignIn('google', $event)" /> -->
         <button
           class="btn-signin my-2"
-          @click.stop.prevent="fbLogin()"
+          @click="loginByFB"
           :disabled="isProcessing"
         >
           使用FaceBook登入
@@ -66,13 +64,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { initialFB } from "../utils/fb";
 import { errorToast } from "../utils/toast";
 import authorizationAPI from "../apis/authorization";
 
 import Navbar from "../components/Navbar.vue";
-// import GoogleBUtton from "../components/GoogleButton.vue";
 
 export default {
   name: "SignIn",
@@ -84,42 +79,15 @@ export default {
       isProcessing: false,
     };
   },
-  computed: {
-    ...mapGetters(["getGOOGLE"]),
-  },
-  created() {
-    initialFB();
-  },
   methods: {
-    async oAuthSignIn(provider, id_token) {
+    async loginByFB() {
       try {
-        await this.$store.dispatch("oAuthLogin", {
-          provider,
-          id_token,
-        });
-        this.$emit("submit");
+        window.location.href="https://mysterious-wave-91363.herokuapp.com/auth/facebook"
       } catch (error) {
-        console.error(error);
+        errorToast.fire({
+          title: '無法使用FaceBook登入，請稍後再試'
+        })
       }
-    },
-    fbLogin() {
-      /* global FB */
-      let vm = this;
-      FB.login(
-        function (response) {
-          console.log("res when login", response);
-          vm.getProfile();
-        },
-        {
-          scope: "email, public_profile",
-          return_scopes: true,
-        }
-      );
-    },
-    getProfile() {
-      FB.api("/me?fields=name,id,email", function (response) {
-        console.log("res in graphAPI", response);
-      });
     },
     async handleSubmit(e) {
       try {

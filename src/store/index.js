@@ -7,8 +7,6 @@ import order from './modules/order'
 import product from './modules/product'
 import cartItem from './modules/cartItem'
 import admin from './modules/admin'
-import fb from './modules/fb'
-import google from './modules/google'
 
 Vue.use(Vuex)
 
@@ -25,8 +23,6 @@ export default new Vuex.Store({
     order,
     product,
     cartItem,
-    admin,
-    fb,
-    google
+    admin
   }
 })
