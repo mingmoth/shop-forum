@@ -1,17 +1,22 @@
 <template>
-  <tr class="order">
-    <!-- <th scope="row"></th> -->
-    <td>#011245</td>
-    <td><span>$ </span> 律師費</td>
-    <td>已和解</td>
-    <td>送往門市</td>
-    <img src="../assets/order_more.png" alt="" class="order-more" />
-  </tr>
+    <tr class="order">
+      <!-- <th scope="row"></th> -->
+      <td>#{{ order.serial_number }}</td>
+      <td><span>$ </span> {{ order.amount }}</td>
+      <td>{{ order.payment_status }}</td>
+      <td>{{ order.shipping_status }}</td>
+      <img src="../assets/order_more.png" alt="" class="order-more" />
+    </tr>
 </template>
 
 <script>
 export default {
   name: "AdminOrderItem",
+  props: {
+    order: {
+      type: Object,
+    },
+  },
 };
 </script>
 

@@ -12,20 +12,27 @@
         </tr>
       </thead>
       <tbody>
-        <AdminOrderItem />
-        <AdminOrderItem />
-        <AdminOrderItem />
-        <AdminOrderItem />
+        <AdminOrderItem v-for="order in getAdminOrders" :key="order.id" :order="order"/>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { adminLoader } from '../utils/app'
+
 import AdminOrderItem from '../components/AdminOrderItem.vue'
 export default {
   name: "AdminOrders",
+  mixins:[ adminLoader ],
   components: { AdminOrderItem },
+  created() {
+    this.setAdminOrders()
+  },
+  computed: {
+    ...mapGetters(['getAdminOrders'])
+  }
 };
 </script>
 

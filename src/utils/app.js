@@ -149,7 +149,7 @@ export const cartLoader = {
 
 export const adminLoader = {
   methods: {
-    ...mapActions(['fetchAdminProducts', 'fetchAdminProduct']),
+    ...mapActions(['fetchAdminProducts', 'fetchAdminProduct', 'fetchAdminOrders']),
     async setAdminProducts() {
       try {
         const { data, statusText }= await adminAPI.adminProducts()
@@ -185,6 +185,20 @@ export const adminLoader = {
         successToast.fire({
           title: data.message
         })
+      } catch (error) {
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async setAdminOrders() {
+      try {
+        const { data, statusText } = await adminAPI.adminOrders()
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        console.log(data.orders)
+        this.fetchAdminOrders(data.orders)
       } catch (error) {
         errorToast.fire({
           title: error.message

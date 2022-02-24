@@ -7,9 +7,6 @@ export default {
   getOrders() {
     return apiHelper.get('/order')
   },
-  getOrder(orderId) {
-    return apiHelper.get(`/orders/${orderId}`)
-  },
   deleteOrder(orderId) {
     return apiHelper.delete(`/orders/${orderId}`)
   }

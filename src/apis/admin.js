@@ -9,5 +9,8 @@ export default {
   },
   adminProductEdit(payload) {
     return apiHelper.put('/admin/product', payload)
+  },
+  adminOrders() {
+    return apiHelper.get('/orders')
   }
 }
