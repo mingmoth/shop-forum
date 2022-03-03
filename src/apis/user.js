@@ -2,6 +2,6 @@ import { apiHelper } from "../utils/apis";
 
 export default {
   getCurrentUser() {
-    return apiHelper.get('/getuser')
+    return apiHelper.get('/api/getuser')
   }
 }

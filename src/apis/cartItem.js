@@ -3,18 +3,18 @@ import { apiHelper } from "../utils/apis";
 export default {
   getCart() {
     console.log()
-    return apiHelper.get('/cart' )
+    return apiHelper.get('/api/cart' )
   },
   addCartItem({ productId }) {
-    return apiHelper.post(`/cartItem/`, { productId })
+    return apiHelper.post(`/api/cartItem/`, { productId })
   },
   removeCartItem({ cartItemId }) {
-    return apiHelper.put('/cartItem/del', { cartItemId })
+    return apiHelper.put('/api/cartItem/del', { cartItemId })
   },
   increaseCartItem({cartItemId}) { 
-    return apiHelper.put('/cartItem/add', { cartItemId })
+    return apiHelper.put('/api/cartItem/add', { cartItemId })
   },
   decreaseCartItem({cartItemId}) {
-    return apiHelper.put('/cartItem/sub', { cartItemId })
+    return apiHelper.put('/api/cartItem/sub', { cartItemId })
   }
 }

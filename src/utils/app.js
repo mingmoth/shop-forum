@@ -7,12 +7,13 @@ import adminAPI from '../apis/admin'
 
 export const productLoader = {
   methods: {
-    ...mapActions(['fetchProducts', 'fetchProduct']),
+    ...mapActions(['fetchProducts', 'fetchProduct', 'fetchTotalPage']),
     async setProducts() {
       try {
         const response = await productAPI.getProducts()
         const { data } = response
         this.fetchProducts(data.products.rows)
+        this.fetchTotalPage(data.totalPage)
       } catch (error) {
         console.log(error)
         errorToast.fire({

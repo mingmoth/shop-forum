@@ -5,7 +5,7 @@
     </div>
     <div class="container">
       <form class="wrapper" @submit.prevent.stop="handleSubmit">
-        <div class="text-center mb-4">
+        <div class="text-center mb-4">   
           <h1 class="signin-title">登入 My JEANS</h1>
         </div>
 

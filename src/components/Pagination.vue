@@ -6,8 +6,8 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li class="page-item">
-        <a class="page-link">1</a>
+      <li class="page-item" v-for="page in getTotalPage" :key="page.id">
+        <a class="page-link">{{page}}</a>
       </li>
       <li class="page-item">
         <a class="page-link" aria-label="Next">
@@ -17,6 +17,16 @@
     </ul>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  name: 'Pagination',
+  computed: {
+    ...mapGetters(['getTotalPage'])
+  }
+}
+</script>
 
 <style lang="sass" scoped>
 .page-wrapper

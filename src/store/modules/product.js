@@ -1,11 +1,13 @@
 const state = {
   products: [],
-  product: {}
+  product: {},
+  totalPage: 1,
 }
 
 const getters = {
   getProducts: state => state.products,
   getProduct: state => state.product,
+  getTotalPage: state => state.totalPage,
 }
 
 const actions = {
@@ -14,6 +16,9 @@ const actions = {
   },
   fetchProduct({ commit }, product) {
     commit('getProduct', product)
+  },
+  fetchTotalPage({ commit }, totalPage) {
+    commit('getTotalPage' ,totalPage)
   }
 }
 
@@ -23,6 +28,9 @@ const mutations = {
   },
   getProduct(state, product) {
     state.product = product
+  },
+  getTotalPage(state, totalPage) {
+    state.totalPage = totalPage
   }
 }
 
