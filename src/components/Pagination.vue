@@ -6,8 +6,8 @@
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li class="page-item" v-for="page in getTotalPage" :key="page.id">
-        <a class="page-link">{{page}}</a>
+      <li class="page-item" v-for="page in getTotalPage" :key="page">
+        <router-link class="page-link" :to="{ name: 'Home', query: {page: page} }">{{page}}</router-link>
       </li>
       <li class="page-item">
         <a class="page-link" aria-label="Next">
@@ -35,6 +35,7 @@ export default {
   ul
     margin-top: 16px
     li
+      cursor: pointer
       .page-link
         color: $text-content
 </style>

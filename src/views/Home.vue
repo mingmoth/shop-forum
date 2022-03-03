@@ -29,7 +29,13 @@ export default {
     };
   },
   created() {
-    this.setProducts()
+    const { page = "" } = this.$route.query
+    this.setProducts({ queryPage: page })
+  },
+  beforeRouteUpdate(to, from, next) {
+    const { page = "" } = to.query;
+    this.setProducts({ queryPage: page });
+    next();
   },
   computed: {
     ...mapGetters(['getProducts'])

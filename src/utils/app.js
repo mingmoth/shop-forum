@@ -8,9 +8,9 @@ import adminAPI from '../apis/admin'
 export const productLoader = {
   methods: {
     ...mapActions(['fetchProducts', 'fetchProduct', 'fetchTotalPage']),
-    async setProducts() {
+    async setProducts({ queryPage }) {
       try {
-        const response = await productAPI.getProducts()
+        const response = await productAPI.getProducts({ page: queryPage })
         const { data } = response
         this.fetchProducts(data.products.rows)
         this.fetchTotalPage(data.totalPage)
