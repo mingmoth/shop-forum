@@ -2,17 +2,17 @@
   <div class="page-wrapper">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link" aria-label="Previous">
+        <router-link class="page-link" aria-label="Previous" :to="{ name: 'Home', query: {page: getPrev} }">
           <span aria-hidden="true">&laquo;</span>
-        </a>
+        </router-link>
       </li>
       <li class="page-item" v-for="page in getTotalPage" :key="page">
         <router-link class="page-link" :to="{ name: 'Home', query: {page: page} }">{{page}}</router-link>
       </li>
       <li class="page-item">
-        <a class="page-link" aria-label="Next">
+        <router-link class="page-link" aria-label="Next" :to="{ name: 'Home', query: {page: getNext} }">
           <span aria-hidden="true">&raquo;</span>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -23,7 +23,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Pagination',
   computed: {
-    ...mapGetters(['getTotalPage'])
+    ...mapGetters(['getTotalPage', 'getNext', 'getPrev'])
   }
 }
 </script>

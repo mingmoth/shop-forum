@@ -7,13 +7,33 @@ import adminAPI from '../apis/admin'
 
 export const productLoader = {
   methods: {
-    ...mapActions(['fetchProducts', 'fetchProduct', 'fetchTotalPage']),
+    ...mapActions(['fetchProducts', 'fetchProduct', 'fetchTotalPage', 'fetchCurrentPage', 'fetchPrev', 'fetchNext', 'fetchSearchKeyword', 'fetchSearchProducts']),
     async setProducts({ queryPage }) {
       try {
         const response = await productAPI.getProducts({ page: queryPage })
         const { data } = response
         this.fetchProducts(data.products.rows)
         this.fetchTotalPage(data.totalPage)
+        this.fetchCurrentPage(data.page)
+        this.fetchPrev(data.prev)
+        this.fetchNext(data.next)
+      } catch (error) {
+        console.log(error)
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+    async setSearchProducts(searchKeyword) {
+      try {
+        const { data, statusText } = await productAPI.searchProducts({
+          keyword: searchKeyword
+        })
+        if (statusText !== 'OK') {
+          throw new Error(data.message)
+        }
+        this.fetchSearchKeyword(searchKeyword)
+        this.fetchSearchProducts(data)
       } catch (error) {
         console.log(error)
         errorToast.fire({

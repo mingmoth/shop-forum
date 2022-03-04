@@ -21,6 +21,11 @@ const router = new VueRouter({
       component: Home
     },
     {
+      path: '/search',
+      name: 'Search',
+      component: () => import('../views/SearchProducts.vue')
+    },
+    {
       path: '/products/:id',
       name: 'products',
       component: () => import('../views/Product.vue')

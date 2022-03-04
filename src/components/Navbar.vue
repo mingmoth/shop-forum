@@ -6,12 +6,19 @@
           <span>My JEANS</span>
         </router-link>
         <div class="search-container">
-          <input type="text" name="search" id="search" placeholder="開始搜尋" />
-          <button>
+          <input 
+            type="text" 
+            name="search" 
+            id="search" 
+            placeholder="開始搜尋" 
+            v-model="keyword"
+            @keydown.enter.prevent="submitSearch()" />
+          <button @click.prevent.stop="submitSearch()">
             <img
               src="../assets/icon_light_search.png"
               alt=""
               class="search-icon"
+              
             />
           </button>
         </div>
@@ -57,19 +64,28 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { productLoader } from '../utils/app'
 export default {
   name: "Navbar",
+  mixins: [ productLoader ],
   computed: {
     ...mapGetters(["getCurrentUser"]),
   },
   data() {
     return {
       open: false,
+      keyword: '',
     };
   },
   methods: {
     toggle() {
       this.open = !this.open;
+    },
+    submitSearch() {
+      if(!this.keyword.trim()) return
+      this.setSearchProducts(this.keyword.trim())
+      this.keyword = ''
+      this.$router.push('/search').catch(()=>{})
     },
     logout() {
       this.$store.dispatch('setLogout')

@@ -8,7 +8,7 @@ export default {
   getProduct(productId) {
     return apiHelper.get(`/api/product/${productId}`)
   },
-  searchProduct() {
-    return apiHelper.get('/search/product' ,{})
+  searchProducts(keyword) {
+    return apiHelper.post('/api/search/product', keyword)
   }
 }

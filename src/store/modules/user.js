@@ -11,12 +11,8 @@ const getters = {
 
 const actions = {
   async setCurrentUser({ commit }, user) {
-    try {
-      const { data } = await userAPI.getCurrentUser()
-      commit('getCurrentUser', data)
-    } catch (error) {
-      console.log(error)
-    }
+    const { data } = await userAPI.getCurrentUser()
+    commit('getCurrentUser', data)
     commit('getCurrentUser', user)
   },
   setLogout({ commit }) {
