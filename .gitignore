@@ -6,7 +6,7 @@ localhost-key.pem
 localhost.pem
 
 # local env files
-.env
+.env*
 .env.local
 .env.*.local
 

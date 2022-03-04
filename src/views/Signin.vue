@@ -44,15 +44,15 @@
           <p class="signup-direct">還沒有加入My JEANS? 立即<router-link to="/signup" class="signUp">註冊</router-link>吧
           </p>
         </div>
-        <button
+        <!-- <button
           class="btn-signin my-2"
           disabled="true"
         >
           使用Google登入
-        </button>
+        </button> -->
         <button
           class="btn-signin my-2"
-          @click="loginByFB"
+          @click.stop.prevent="loginByFB"
           :disabled="isProcessing"
         >
           使用FaceBook登入
