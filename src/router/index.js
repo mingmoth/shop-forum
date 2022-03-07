@@ -4,8 +4,20 @@ import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
 
 import store from '../store'
+import { successToast } from '../utils/toast'
 
 Vue.use(VueRouter)
+
+const socialMediaLogin = (to, from , next) => {
+  if(to.path ==='/_=_') {
+    localStorage.setItem('token', to.query.token)
+    store.dispatch('setCurrentUser')
+    next('/')
+    successToast.fire({
+      title: '登入成功'
+    })
+  }
+}
 
 const router = new VueRouter({
   linkExactActiveClass: 'active',
@@ -91,7 +103,8 @@ const router = new VueRouter({
     {
       path: '*',
       name: 'not-found',
-      component: NotFound
+      component: NotFound,
+      beforeEnter: socialMediaLogin,
     },
   ]
 })

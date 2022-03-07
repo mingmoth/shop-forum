@@ -10,10 +10,9 @@ const getters = {
 }
 
 const actions = {
-  async setCurrentUser({ commit }, user) {
+  async setCurrentUser({ commit }) {
     const { data } = await userAPI.getCurrentUser()
     commit('getCurrentUser', data)
-    commit('getCurrentUser', user)
   },
   setLogout({ commit }) {
     commit('logoutUser')

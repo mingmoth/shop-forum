@@ -82,7 +82,7 @@ export default {
   methods: {
     async loginByFB() {
       try {
-        window.location.href="https://mysterious-wave-91363.herokuapp.com/auth/facebook"
+        window.location.href="https://mysterious-wave-91363.herokuapp.com/api/auth/facebook"
       } catch (error) {
         errorToast.fire({
           title: '無法使用FaceBook登入，請稍後再試'
