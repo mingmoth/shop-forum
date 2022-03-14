@@ -53,11 +53,11 @@
 
 <script>
 
-import { Toast } from '@/utils/helpers'
+// import { Toast } from '@/utils/helpers'
 import { mapState } from 'vuex'
-import cartsAPI from '@/apis/carts'
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
+// import cartsAPI from '@/apis/carts'
+// import Navbar from '@/components/Navbar.vue'
+// import Footer from '@/components/Footer.vue'
 
 export default {
   data () {
@@ -68,10 +68,10 @@ export default {
       tradeInfo: {}
     }
   },
-  components: {
-    Navbar,
-    Footer
-  },
+  // components: {
+  //   Navbar,
+  //   Footer
+  // },
   mounted () {
     this.fetchPayment()
   },
@@ -79,25 +79,25 @@ export default {
     ...mapState(['currentUser', 'isAuthenticated'])
   },
   methods: {
-    async fetchPayment () {
-      const loader = this.$loading.show({
-        isFullPage: true,
-        opacity: 1
-      })
-      try {
-        const { data } = await cartsAPI.getPaymentInfo(this.$route.query.sn)
-        this.totalPrice = data.data.total_amount
-        this.calculateTotalPrice(data.data.orderItems)
-        loader.hide()
-      } catch (error) {
-        loader.hide()
-        console.log(error)
-        Toast.fire({
-          icon: 'error',
-          title: '目前無法取得付款資訊，請稍候'
-        })
-      }
-    },
+    // async fetchPayment () {
+    //   const loader = this.$loading.show({
+    //     isFullPage: true,
+    //     opacity: 1
+    //   })
+    //   try {
+    //     const { data } = await cartsAPI.getPaymentInfo(this.$route.query.sn)
+    //     this.totalPrice = data.data.total_amount
+    //     this.calculateTotalPrice(data.data.orderItems)
+    //     loader.hide()
+    //   } catch (error) {
+    //     loader.hide()
+    //     console.log(error)
+    //     Toast.fire({
+    //       icon: 'error',
+    //       title: '目前無法取得付款資訊，請稍候'
+    //     })
+    //   }
+    // },
     calculateTotalPrice (arr) {
       this.totalQuantity = 0
       arr.forEach(c => {
