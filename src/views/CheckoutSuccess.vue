@@ -216,7 +216,7 @@ $red: rgb(255, 56, 92);
           width: 100%;
           padding-top: 50%;
           position: relative;
-          background: url(../assets/people-eating-food.svg) no-repeat center;
+          // background: url(../assets/people-eating-food.svg) no-repeat center;
           background-size: contain;
           .cover {
             position: absolute;
