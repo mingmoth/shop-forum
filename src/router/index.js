@@ -63,6 +63,21 @@ const router = new VueRouter({
       component: () => import('../views/Order.vue')
     },
     {
+      path: '/users/checkout',
+      name: 'checkout',
+      component: () => import('../views/Checkout.vue')
+    },
+    {
+      path: '/users/checkout/success',
+      name: 'checkout-success',
+      component: () => import('../views/CheckoutSuccess.vue')
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('../views/Checkout.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/Admin.vue'),

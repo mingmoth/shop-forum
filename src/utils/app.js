@@ -82,6 +82,7 @@ export const orderLoader = {
         successToast.fire({
           title: data.message
         })
+        this.$router.push("/users/checkout");
       } catch (error) {
         console.log(error)
         errorToast.fire({

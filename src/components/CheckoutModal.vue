@@ -115,7 +115,6 @@ export default {
       this.name = ''
       this.address = ''
       this.phone = ''
-      this.$router.push("/orders");
     },
   },
 };

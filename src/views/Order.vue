@@ -63,7 +63,6 @@ export default {
     ...mapGetters(['getOrders', 'getCurrentUser']),
   },
   created() {
-    console.log('yead')
     if(!this.getCurrentUser.name) {
       errorToast.fire({
         title: '請先登入後再瀏覽歷史訂單'
@@ -72,7 +71,6 @@ export default {
     } else {
       this.setOrders()
     }
-    
   },
 };
 </script>
