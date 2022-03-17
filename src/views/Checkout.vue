@@ -249,10 +249,11 @@ export default {
       });
       try {
         const orderData = {
-          amount: this.totalPrice,
+          amount: this.getTotalPrice,
           address: this.userAddress,
           name: this.userName,
           email: this.userEmail,
+          cartId: this.getCartId
         };
         const { data } = await orderAPI.postTradeInfo(orderData);
         console.log(data)
