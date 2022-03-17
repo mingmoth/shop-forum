@@ -9,5 +9,8 @@ export default {
   },
   deleteOrder(orderId) {
     return apiHelper.delete(`/api/orders/${orderId}`)
-  }
+  },
+  postTradeInfo(data) {
+    return apiHelper.post('/api/order', data)
+  },
 }

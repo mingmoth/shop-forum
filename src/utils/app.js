@@ -73,23 +73,22 @@ export const orderLoader = {
         })
       }
     },
-    async postOrder(payload) {
-      try {
-        const { data, statusText } = await orderAPI.createOrder(payload)
-        if (statusText !== "OK") {
-          throw new Error(data.message)
-        }
-        successToast.fire({
-          title: data.message
-        })
-        this.$router.push("/users/checkout");
-      } catch (error) {
-        console.log(error)
-        errorToast.fire({
-          title: error.message
-        })
-      }
-    }
+    // async postOrder(payload) {
+    //   try {
+    //     const { data, statusText } = await orderAPI.createOrder(payload)
+    //     if (statusText !== "OK") {
+    //       throw new Error(data.message)
+    //     }
+    //     successToast.fire({
+    //       title: data.message
+    //     })
+    //   } catch (error) {
+    //     console.log(error)
+    //     errorToast.fire({
+    //       title: error.message
+    //     })
+    //   }
+    // }
   }
 }
 

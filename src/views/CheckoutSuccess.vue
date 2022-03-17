@@ -89,7 +89,7 @@ export default {
     //     this.totalPrice = data.data.total_amount
     //     this.calculateTotalPrice(data.data.orderItems)
     //     loader.hide()
-    //   } catch (error) {
+    //   } catch (error) { 
     //     loader.hide()
     //     console.log(error)
     //     Toast.fire({

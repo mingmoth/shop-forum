@@ -1,6 +1,6 @@
 <template>
   <div class="checkout-page">
-    <!-- <Navbar></Navbar> -->
+    <Navbar></Navbar>
     <div class="checkout-container">
       <div class="main-title">確認購買與選擇付款方式</div>
       <div class="page-container">
@@ -11,75 +11,122 @@
             </div>
             <div class="divider"></div>
             <div class="card-content">
-            <div class="item-wrapper">
-              <div class="text">商品總計</div>
-              <div class="total-price">{{ totalPrice | priceFormat }}</div>
-            </div>
-            <div class="item-wrapper">
-              <div class="text">數量總計</div>
-              <div class="total-price">{{totalQuantity }}</div>
-            </div>
-            <div v-if="false" class="discount">使用優惠券</div>
-            <div class="divider"></div>
-            <div class="item-wrapper summary">
-              <div class="text">結帳總金額</div>
-              <div class="total-price">{{ totalPrice | priceFormat }}</div>
-            </div>
+              <div class="item-wrapper">
+                <div class="text">數量總計</div>
+                <div class="total-price">{{ totalQuantity }}</div>
+              </div>
+              <div v-if="false" class="discount">使用優惠券</div>
+              <div class="divider"></div>
+              <div class="item-wrapper summary">
+                <div class="text">結帳總金額</div>
+                <div class="total-price">{{ getTotalPrice | priceFormat }}</div>
+              </div>
             </div>
           </div>
         </div>
         <div class="contact-and-submit">
-          <validation-observer ref="formvalidation" v-slot="{ handleSubmit, invalid }">
-            <form @submit.prevent="handleSubmit(postTradeInfo)" >
+          <validation-observer
+            ref="formvalidation"
+            v-slot="{ handleSubmit, invalid }"
+          >
+            <form @submit.prevent="handleSubmit(postTradeInfo)">
               <div class="title">確認購買與選擇付款方式</div>
               <div class="contact-card" ref="contact-card">
                 <div class="all-wrapper">
-                  <validation-provider v-slot="{ errors, classes }" rules="required">
+                  <validation-provider
+                    v-slot="{ errors, classes }"
+                  >
                     <label for="name" class="all-text">購買人姓名</label>
-                    <input id="name" type="text" class="all-input" v-model="userName" :class="classes" :disabled="tradeInfo.TradeInfo">
-                    <span v-if="errors[0]" class="invalid-text">{{ errors[0].replace('name ', '姓名') }}</span>
+                    <input
+                      id="name"
+                      type="text"
+                      class="all-input"
+                      v-model="userName"
+                      :class="classes"
+                      :disabled="tradeInfo.TradeInfo"
+                    />
+                    <span v-if="errors[0]" class="invalid-text">{{
+                      errors[0].replace("name ", "姓名")
+                    }}</span>
                   </validation-provider>
                 </div>
                 <div class="all-wrapper">
-                  <validation-provider v-slot="{ errors, classes }" rules="required|email">
+                  <validation-provider
+                    v-slot="{ errors, classes }"
+                  >
                     <label for="email" class="all-text">購買人電子郵件</label>
-                    <input id="email" type="email" class="all-input" v-model="userEmail" :class="classes" :disabled="tradeInfo.TradeInfo">
-                    <span v-if="errors[0]" class="invalid-text">{{ errors[0].replace('email ', '電子郵件') }}</span>
+                    <input
+                      id="email"
+                      type="email"
+                      class="all-input"
+                      v-model="userEmail"
+                      :class="classes"
+                      :disabled="tradeInfo.TradeInfo"
+                    />
+                    <span v-if="errors[0]" class="invalid-text">{{
+                      errors[0].replace("email ", "電子郵件")
+                    }}</span>
                   </validation-provider>
                 </div>
                 <div class="all-wrapper">
-                  <validation-provider v-slot="{ errors, classes }" rules="required">
-                    <label for="phone" class="all-text">購買人手機號碼</label>
-                    <input id="phone" type="text" class="all-input" v-model="userPhone" :class="classes" :disabled="tradeInfo.TradeInfo">
-                    <span v-if="errors[0]" class="invalid-text">{{ errors[0].replace('phone ', '手機號碼') }}</span>
-                  </validation-provider>
-                </div>
-                <div class="all-wrapper">
-                  <validation-provider v-slot="{ errors, classes }" rules="required">
+                  <validation-provider
+                    v-slot="{ errors, classes }"
+                  >
                     <label for="address" class="all-text">購買人地址</label>
-                    <input id="address" type="text" class="all-input" v-model="userAddress" :class="classes" :disabled="tradeInfo.TradeInfo">
-                    <span v-if="errors[0]" class="invalid-text">{{ errors[0].replace('address ', '地址') }}</span>
+                    <input
+                      id="address"
+                      type="text"
+                      class="all-input"
+                      v-model="userAddress"
+                      :class="classes"
+                      :disabled="tradeInfo.TradeInfo"
+                    />
+                    <span v-if="errors[0]" class="invalid-text">{{
+                      errors[0].replace("address ", "地址")
+                    }}</span>
                   </validation-provider>
                 </div>
                 <div class="all-wrapper">
                   <label for="purpose" class="all-text">付款方式</label>
                   <div class="button-wrapper">
-                    <button class="button" v-for="(el, idx) in payby" :key="`payby-${idx}`" :class="{select: submitPayby === el}" :disabled="tradeInfo.TradeInfo">
+                    <button
+                      class="button"
+                      v-for="(el, idx) in payby"
+                      :key="`payby-${idx}`"
+                      :class="{ select: submitPayby === el }"
+                      :disabled="tradeInfo.TradeInfo"
+                    >
                       <span class="text">{{ el }}</span>
                     </button>
                   </div>
                 </div>
                 <div class="all-wrapper">
-                  <validation-provider v-slot="{ errors, classes }" rules="max:140">
+                  <validation-provider
+                    v-slot="{ errors, classes }"
+                    rules="max:140"
+                  >
                     <label for="note" class="all-text">其他備註</label>
-                    <textarea id="note" class="all-input text-area" placeholder="有任何特殊需求嗎？可以先寫在這裡喔！" v-model="userNote" :class="classes" :disabled="tradeInfo.TradeInfo"></textarea>
+                    <textarea
+                      id="note"
+                      class="all-input text-area"
+                      placeholder="有任何特殊需求嗎？可以先寫在這裡喔！"
+                      v-model="userNote"
+                      :class="classes"
+                      :disabled="tradeInfo.TradeInfo"
+                    ></textarea>
                     <div class="note-count">({{ userNote.length }}/140)</div>
-                    <span v-if="errors[0]" class="invalid-text note-error">{{ errors[0].replace('note ', '其他備註') }}</span>
+                    <span v-if="errors[0]" class="invalid-text note-error">{{
+                      errors[0].replace("note ", "其他備註")
+                    }}</span>
                   </validation-provider>
                 </div>
               </div>
               <div class="submit-button-wrapper" v-if="!tradeInfo.PayGateWay">
-                <button class="submit-button" type="submit" :class="{ disabled: invalid }">
+                <button
+                  class="submit-button"
+                  type="submit"
+                  :class="{ disabled: invalid }"
+                >
                   <div class="button">確認購買</div>
                 </button>
                 <div class="back-button" @click.prevent="$router.go(-1)">
@@ -87,16 +134,45 @@
                 </div>
               </div>
             </form>
-          </validation-observer> 
-          <form name='Spgateway' :action='tradeInfo.PayGateWay' method="POST">
-            <input v-show="false" type="text" name="MerchantID" v-model="tradeInfo.MerchantID">
-            <input v-show="false" type="text" name="TradeInfo" v-model="tradeInfo.TradeInfo">
-            <input v-show="false" type="text" name="TradeSha" v-model="tradeInfo.TradeSha">
-            <input v-show="false" type="text" name="Version" v-model="tradeInfo.Version">
-            <button class="spgateway-button" v-show="tradeInfo.PayGateWay" id="spgateway-button" type="submit">
+          </validation-observer>
+          <form name="Spgateway" :action="tradeInfo.PayGateWay" method="POST">
+            <input
+              v-show="false"
+              type="text"
+              name="MerchantID"
+              v-model="tradeInfo.MerchantID"
+            />
+            <input
+              v-show="false"
+              type="text"
+              name="TradeInfo"
+              v-model="tradeInfo.TradeInfo"
+            />
+            <input
+              v-show="false"
+              type="text"
+              name="TradeSha"
+              v-model="tradeInfo.TradeSha"
+            />
+            <input
+              v-show="false"
+              type="text"
+              name="Version"
+              v-model="tradeInfo.Version"
+            />
+            <button
+              class="spgateway-button"
+              v-show="tradeInfo.PayGateWay"
+              id="spgateway-button"
+              type="submit"
+            >
               <div class="button">前往付款頁面</div>
             </button>
-            <div class="stop-pay-button" v-show="tradeInfo.PayGateWay" @click.prevent="$router.go(-1)">
+            <div
+              class="stop-pay-button"
+              v-show="tradeInfo.PayGateWay"
+              @click.prevent="$router.go(-1)"
+            >
               <div class="button">回上一步</div>
             </div>
           </form>
@@ -110,109 +186,98 @@
 </template>
 
 <script>
+import { errorToast } from "../utils/toast";
+import { mapState, mapGetters } from "vuex";
+import orderAPI from '../apis/order'
 
-// import { Toast } from '@/utils/helpers'
-import { mapState } from 'vuex'
-// import cartsAPI from '@/apis/carts'
-// import Navbar from '@/components/Navbar.vue'
+import Navbar from "../components/Navbar.vue";
 // import Footer from '@/components/Footer.vue'
 export default {
-  data () {
+  data() {
     return {
-      payby: ['信用卡', 'ATM轉帳(未開放)'],
-      submitPayby: '信用卡',
+      payby: ["信用卡", "ATM轉帳(未開放)"],
+      submitPayby: "信用卡",
       cart: [],
       totalPrice: 0,
       totalQuantity: 0,
-      userName: '',
-      userEmail: '',
-      userPhone: '',
-      userAddress: '',
-      userNote: '',
-      tradeInfo: {}
-    }
+      userName: "",
+      userEmail: "",
+      userPhone: "",
+      userAddress: "",
+      userNote: "",
+      tradeInfo: {},
+    };
   },
-  // components: {
-  //   Navbar,
-  //   Footer
-  // },
-  created () {
-    this.fetchCart()
-    if (this.currentUser) {
-      this.userName = this.currentUser.name
-      this.userPhone = this.currentUser.phone_number
-      this.userEmail = this.currentUser.email
-    }
+  components: {
+    Navbar,
+  },
+  created() {
+    this.fetchCart();
+    this.calculateTotalPrice()
+    this.userName = this.getCurrentUser.name;
+    this.userEmail = this.getCurrentUser.email;
+    
   },
   computed: {
-    ...mapState(['currentUser', 'isAuthenticated'])
+    ...mapState(["currentUser", "isAuthenticated"]),
+    ...mapGetters(["getCart", "getCartId", "getTotalPrice", "getCurrentUser"]),
   },
   methods: {
-    // async fetchCart () {
-    //   const loader = this.$loading.show({
-    //     isFullPage: true,
-    //     opacity: 1
-    //   })
-    //   try {
-    //     const { data } = await cartsAPI.getCart()
-    //     this.cart = data.data
-    //     this.calculateTotalPrice()
-    //     loader.hide()
-    //   } catch (error) {
-    //     loader.hide()
-    //     console.log(error)
-    //     Toast.fire({
-    //       icon: 'error',
-    //       title: '目前無法取得購物車資訊，請稍候'
-    //     })
-    //   }
-    // },
+    async fetchCart () {
+      const loader = this.$loading.show({
+        isFullPage: true,
+        opacity: 1
+      })
+      try {
+        loader.hide()
+      } catch (error) {
+        loader.hide()
+        console.log(error)
+      }
+    },
     calculateTotalPrice () {
       this.totalPrice = 0
       this.totalQuantity = 0
-      this.cart.forEach(c => {
-        c.subTotalPrice = c.quantity * Number(c.Coupon.price)
-        this.totalPrice += Number(c.subTotalPrice)
+      this.getCart.forEach(c => {
         this.totalQuantity += Number(c.quantity)
       })
     },
-    // async postTradeInfo () {
-    //   const loader = this.$loading.show({
-    //     opacity: 1,
-    //     isFullPage: true
-    //   })
-    //   try {
-    //     const orderData = {
-    //       totalPrice: this.totalPrice,
-    //       address: this.userAddress,
-    //       phone: this.userPhone,
-    //       name: this.userName,
-    //       email: this.userEmail
-    //     }
-    //     const { data } = await cartsAPI.postTradeInfo(orderData)
-    //     if (data.status !== 'success') {
-    //       loader.hide()
-    //       throw new Error(data.message)
-    //     }
-    //     this.tradeInfo = data.tradeInfo
-    //     loader.hide()
-    //   } catch (error) {
-    //     loader.hide()
-    //     console.log(error)
-    //     Toast.fire({
-    //       icon: 'error',
-    //       title: '目前無法成立訂單'
-    //     })
-    //   }
-    // }
-  }
-}
+    async postTradeInfo() {
+      const loader = this.$loading.show({
+        opacity: 1,
+        isFullPage: true,
+      });
+      try {
+        const orderData = {
+          amount: this.totalPrice,
+          address: this.userAddress,
+          name: this.userName,
+          email: this.userEmail,
+        };
+        const { data } = await orderAPI.postTradeInfo(orderData);
+        console.log(data)
+        if (data.status !== "success") {
+          loader.hide();
+          throw new Error(data.message);
+        }
+        this.tradeInfo = data.tradeInfo;
+        loader.hide();
+      } catch (error) {
+        loader.hide();
+        console.log(error);
+        errorToast.fire({
+          title: error.message
+        })
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-$yellow: #F5DF4D;
+$yellow: #f5df4d;
 $ultimategray: #939597;
-$divider: #E6ECF0;
+$divider: #e6ecf0;
 $red: rgb(255, 56, 92);
 $darkred: #c13515;
 .checkout-page {

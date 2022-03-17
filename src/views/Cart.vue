@@ -20,14 +20,13 @@
         </div>
         <button
           class="btn-checkout"
-          data-bs-toggle="modal"
-          data-bs-target="#check-out-info"
+          @click.stop.prevent="$router.push('/users/checkout')"
         >
           送出購物車
         </button>
       </div>
     </div>
-    <CheckoutModal />
+    <!-- <CheckoutModal /> -->
     <div class="foot"></div>
   </div>
 </template>
@@ -39,11 +38,11 @@ import { errorToast } from '../utils/toast';
 
 import Navbar from "../components/Navbar.vue";
 import CartItem from "../components/CartItem.vue";
-import CheckoutModal from "../components/CheckoutModal.vue";
+// import CheckoutModal from "../components/CheckoutModal.vue";
 export default {
   name: "Cart",
   mixins: [cartLoader, orderLoader],
-  components: { Navbar, CartItem, CheckoutModal },
+  components: { Navbar, CartItem },
   computed: {
     ...mapState(['isAuthenticated']),
     ...mapGetters(["getCart", "getCartId", "getTotalPrice", 'getCurrentUser']),
